@@ -1,0 +1,51 @@
+export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer
+      data-testid="footer"
+      className="bg-neutral-black py-12"
+    >
+      <div className="container-custom">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          {/* Logo & Location */}
+          <div className="text-center md:text-left">
+            <span className="font-heading font-extrabold text-2xl text-white">
+              Groove Media
+            </span>
+            <p className="text-white/50 font-body text-sm mt-1">
+              Helping Maryland Contractors Win More Jobs
+            </p>
+          </div>
+
+          {/* Links */}
+          <div className="flex items-center gap-6 text-white/50 font-body text-sm">
+            <a
+              href="#"
+              className="hover:text-white transition-colors"
+              data-testid="privacy-link"
+            >
+              Privacy Policy
+            </a>
+            <span className="text-white/20">|</span>
+            <a
+              href="#"
+              className="hover:text-white transition-colors"
+              data-testid="terms-link"
+            >
+              Terms of Service
+            </a>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="border-t border-white/10 mt-8 pt-8">
+          <p className="text-center text-white/40 font-body text-sm">
+            © {currentYear} Groove Media • Serving Montgomery, Howard & Frederick
+            Counties, Maryland
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}

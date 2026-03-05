@@ -1,0 +1,64 @@
+{
+  "summary": {
+    "total_tests": 9,
+    "passed_tests": 9,
+    "success_rate": 100.0,
+    "timestamp": "2026-03-05T19:05:25.401906"
+  },
+  "test_details": [
+    {
+      "test": "Health Check",
+      "status": "PASS",
+      "details": "Status: 200, Formspree: False",
+      "timestamp": "2026-03-05T19:05:24.029017"
+    },
+    {
+      "test": "Admin Login",
+      "status": "PASS",
+      "details": "Token received",
+      "timestamp": "2026-03-05T19:05:24.184526"
+    },
+    {
+      "test": "Admin Login Invalid",
+      "status": "PASS",
+      "details": "Status: 401 (Expected 401)",
+      "timestamp": "2026-03-05T19:05:24.315407"
+    },
+    {
+      "test": "Create Lead",
+      "status": "PASS",
+      "details": "Lead ID: 1ece964b-b440-4e7d-b759-577e410bdd99",
+      "timestamp": "2026-03-05T19:05:24.563898"
+    },
+    {
+      "test": "Lead Validation",
+      "status": "PASS",
+      "details": "Status: 422 (Expected 422)",
+      "timestamp": "2026-03-05T19:05:24.765478"
+    },
+    {
+      "test": "Get Leads",
+      "status": "PASS",
+      "details": "Retrieved 1 leads",
+      "timestamp": "2026-03-05T19:05:24.879353"
+    },
+    {
+      "test": "Get Leads Count",
+      "status": "PASS",
+      "details": "Count: 1",
+      "timestamp": "2026-03-05T19:05:25.065383"
+    },
+    {
+      "test": "Delete Lead",
+      "status": "PASS",
+      "details": "Status: 200, Lead ID: 1ece964b-b440-4e7d-b759-577e410bdd99",
+      "timestamp": "2026-03-05T19:05:25.229358"
+    },
+    {
+      "test": "Delete Nonexistent Lead",
+      "status": "PASS",
+      "details": "Status: 404 (Expected 404)",
+      "timestamp": "2026-03-05T19:05:25.401004"
+    }
+  ]
+}
