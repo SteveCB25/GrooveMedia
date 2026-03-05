@@ -1,73 +1,68 @@
-# Local Lead Systems - Product Requirements Document
+# Groove Media - Static Website PRD
 
 ## Original Problem Statement
-Build a high-performing, mobile-first one-page website for "Local Lead Systems". Target audience: Maryland-based outdoor service businesses (Deck Builders, Landscapers, Roofers, Fence Installers, etc.) who want to capture more jobs they usually miss to slow follow-up.
+Build a static, single-page website for "Groove Media" (formerly "Local Lead Systems") targeting home service contractors in the DMV area. The site promotes lead generation services with website + automation packages.
 
-## Architecture
-- **Frontend**: React 19 + Tailwind CSS + Shadcn UI
-- **Backend**: FastAPI + MongoDB
-- **Form Integration**: Formspree (requires FORMSPREE_FORM_ID in .env)
-- **Admin Auth**: Simple username/password (MVP)
+## Target Audience
+Home service contractors: deck builders, fence installers, landscapers, tree removal, painters, roofers, flooring specialists, and general contractors.
 
-## User Personas
-1. **Primary**: Maryland outdoor service contractors (deck builders, fence installers, landscapers, tree removal, painters, roofers)
-2. **Admin**: Business owner viewing/managing leads
+## Core Requirements
+1. **Static Site Only** - Plain HTML, CSS, vanilla JavaScript (no frameworks)
+2. **Mobile-First Design** - Responsive across all devices
+3. **Formspree Integration** - Contact form posts to `https://formspree.io/f/mgonwdye`
+4. **Desktop Hero Image** - Visible on desktop, hidden on mobile
+5. **Industry Jumplinks** - Trade cards link to contact form and pre-select service dropdown
 
-## Core Requirements (Static)
-- Mobile-first responsive design with large tappable buttons
-- Trust-based color palette (Navy #1B365D, Orange #FF6B00)
-- "Contractor speak" not "marketing speak"
-- Simple pricing: $500 setup + $150/month
-- ROI-focused messaging (1 job = pays for itself)
-- Local Maryland hooks (Montgomery, Howard, Frederick Counties)
+## Design Guidelines Applied
+| Element | Size | Weight |
+|---------|------|--------|
+| Main Headlines | 36-48px | Extra Bold (800) |
+| Subheadlines | 20-24px | Regular (400) |
+| Body Text | 18px | Regular (400) |
+| Button Text | 18px | Bold (700) |
+| Logo | 32-36px | Extra Bold (800) |
+| Line Height | 1.5-1.6 | - |
+| All-caps Labels | 13-14px | Letter-spacing 0.05em |
 
-## What's Been Implemented (Jan 2026)
+## Tech Stack
+- **Frontend:** HTML5, CSS3, Vanilla JavaScript
+- **Form Handler:** Formspree
+- **Fonts:** Barlow Condensed (headings), Inter (body)
+- **Color Scheme:** Navy (#1B365D), Orange (#FF6B00)
 
-### Landing Page Sections ✅
-1. **Hero**: "Turn missed calls into booked jobs" + location badge + "Get a Free Website Check" CTA
-2. **Problem ("Leaky Bucket")**: 4 pain points (missed calls, slow texts, outdated site, zero reviews)
-3. **3-Step Solution**: Upgrade website → Capture leads → Track & win
-4. **What You Get**: 5-item checklist (website, quote form, automation, tracking, reviews)
-5. **Pricing**: $500 setup + $150/mo with ROI calculator (shows 1 job to break even)
-6. **Industries**: 6 trade icons (Deck, Fence, Landscaping, Tree, Painting, Roofing)
-7. **FAQ**: 3 direct questions (How long? Do I own it? Contract?)
-8. **Lead Form**: "Request My Free Website Check"
-9. **Footer**: Local Lead Systems + counties
+## File Structure
+```
+/app/static-site/
+├── index.html     # All page content
+├── styles.css     # All styling
+├── script.js      # Client-side interactivity
+└── assets/
+    └── hero-contractors.jpg
+```
 
-### Backend ✅
-- POST /api/leads - Create lead
-- GET /api/leads - List leads with search
-- DELETE /api/leads/{id} - Delete lead
-- POST /api/admin/login - Admin authentication
-- Formspree integration (requires form ID)
+## What's Been Implemented (December 2025)
+- [x] Complete static site structure
+- [x] Navy/orange color theme matching original React design
+- [x] Mobile-first responsive design
+- [x] Desktop-only hero image (hidden on mobile via CSS)
+- [x] Industry cards as jumplinks to contact form
+- [x] Form dropdown auto-selection when clicking industry links
+- [x] Formspree form integration (endpoint: mgonwdye)
+- [x] FAQ accordion
+- [x] Mobile hamburger menu
+- [x] Smooth scroll navigation
+- [x] **Typography overhaul per user specs:**
+  - Headlines 36-48px Extra Bold
+  - Body text 18px
+  - Buttons 18px Bold
+  - Logo 36px
+  - Proper line-height (1.5-1.6)
+  - Letter-spacing on all-caps labels
 
-### Admin Dashboard ✅
-- Login page
-- Leads table with search
-- Lead count display
-- Delete functionality
+## User Deployment
+User will deploy via GitHub → Vercel. Static files are ready in `/app/static-site/`.
 
-## Prioritized Backlog
-
-### P0 (Critical)
-- [x] Form submission working
-- [x] Admin can view leads
-- [x] New pricing displayed correctly
-
-### P1 (Important)
-- [ ] Add Formspree form ID for email notifications
-- [ ] Update admin credentials in production
-
-### P2 (Nice to Have)
-- [ ] Export leads to CSV
-- [ ] Email notification on new lead
-- [ ] Analytics/tracking integration
-
-## Next Tasks
-1. User to provide Formspree form ID and add to backend/.env
-2. Update admin password for production
-3. Consider adding Google Analytics for conversion tracking
-
-## Admin Credentials
-- Username: admin
-- Password: groovemedia2024
+## Notes
+- No backend required
+- No database required
+- Files are copied to `/app/frontend/public/` for Emergent preview only

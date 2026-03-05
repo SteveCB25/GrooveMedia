@@ -5,7 +5,7 @@ from datetime import datetime
 import uuid
 
 class GrooveMediaAPITester:
-    def __init__(self, base_url="https://lead-capture-md.preview.emergentagent.com"):
+    def __init__(self, base_url="https://contractor-hub-136.preview.emergentagent.com"):
         self.base_url = base_url
         self.api_base = f"{base_url}/api"
         self.admin_token = None
