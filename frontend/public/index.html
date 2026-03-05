@@ -1,21 +1,372 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#1B365D" />
-    <meta name="description" content="Turn missed calls into booked jobs. Simple websites and follow-up automation for Maryland contractors." />
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
-    <title>Groove Media | Maryland Contractor Lead Generation</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Groove Media - Turn missed calls into booked jobs. Simple websites and automated responses for contractors.">
+  <title>The Groove Media | Contractor Lead Generation</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="#" class="logo">The Groove Media</a>
+      <nav class="nav" id="nav">
+        <a href="#how-it-works">How It Works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="nav-cta">Get Started</a>
+      </nav>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <h1>Turn missed calls into booked jobs.</h1>
+          <p class="hero-sub">Simple websites and automated follow-up designed for contractors and outdoor service businesses in the DMV area.</p>
+          <a href="#contact" class="btn btn-primary btn-large">Get a Free 10-Min Audit</a>
+          <div class="hero-trust">
+            <span>No contracts</span>
+            <span class="separator">·</span>
+            <span>Live in 7-14 days</span>
+            <span class="separator">·</span>
+            <span>You own your site</span>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="assets/hero-contractors.jpg" alt="Contractors giving thumbs up">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROBLEM ========== -->
+  <section class="section" id="problem">
+    <div class="container">
+      <span class="section-tag">The Problem</span>
+      <h2>You're losing jobs to slow follow-up.</h2>
+      <p class="section-intro">Homeowners reach out to 3-5 contractors. The first to respond usually wins.</p>
+      
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">
+            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91"/>
+              <line x1="1" y1="1" x2="23" y2="23" stroke="#e53935" stroke-width="2.5"/>
+            </svg>
+          </div>
+          <h3>Missed Calls</h3>
+          <p>You're on a job, the phone rings, and by the time you call back—they've already hired someone else.</p>
+        </div>
+        
+        <div class="card">
+          <div class="card-icon">
+            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <h3>Slow Replies</h3>
+          <p>Texting back hours later? That lead has gone cold. Speed wins jobs.</p>
+        </div>
+        
+        <div class="card">
+          <div class="card-icon">
+            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </div>
+          <h3>No Reviews</h3>
+          <p>Happy customers don't leave reviews unless you ask. No reviews = invisible on Google.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== HOW IT WORKS ========== -->
+  <section class="section section-alt" id="how-it-works">
+    <div class="container">
+      <span class="section-tag">The Solution</span>
+      <h2>How It Works</h2>
+      <p class="section-intro">Three simple steps to capture more leads and win more jobs.</p>
+      
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>We Build Your Website</h3>
+            <p>A clean, mobile-friendly site that loads fast and makes it easy for customers to request a quote.</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>We Automate Your Follow-Up</h3>
+            <p>Missed call? Instant text goes out. New lead? Auto-response keeps them engaged until you're ready.</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>You Win More Jobs</h3>
+            <p>Track every lead, close more deals, and get 5-star reviews automatically after every job.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WHAT YOU GET ========== -->
+  <section class="section" id="features">
+    <div class="container">
+      <span class="section-tag">What's Included</span>
+      <h2>Everything You Need</h2>
+      <p class="section-intro">No fluff. Just the tools that actually get you more jobs.</p>
+      
+      <ul class="checklist">
+        <li>
+          <svg width="24" height="24" fill="none" stroke="#22c55e" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Modern, mobile-friendly website
+        </li>
+        <li>
+          <svg width="24" height="24" fill="none" stroke="#22c55e" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Quote request form
+        </li>
+        <li>
+          <svg width="24" height="24" fill="none" stroke="#22c55e" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Missed call text-back automation
+        </li>
+        <li>
+          <svg width="24" height="24" fill="none" stroke="#22c55e" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Lead tracking dashboard
+        </li>
+        <li>
+          <svg width="24" height="24" fill="none" stroke="#22c55e" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Automated review requests
+        </li>
+        <li>
+          <svg width="24" height="24" fill="none" stroke="#22c55e" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Ongoing support & updates
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== PRICING ========== -->
+  <section class="section section-alt" id="pricing">
+    <div class="container">
+      <span class="section-tag">Pricing</span>
+      <h2>Simple, Honest Pricing</h2>
+      <p class="section-intro">No hidden fees. No long-term contracts. Cancel anytime.</p>
+      
+      <div class="pricing-box">
+        <div class="pricing-header">
+          <h3>Complete Lead System</h3>
+          <p>Website + Automation + Support</p>
+        </div>
+        <div class="pricing-body">
+          <div class="price-row">
+            <span class="price-amount">$500</span>
+            <span class="price-label">one-time setup</span>
+          </div>
+          <div class="price-divider">+</div>
+          <div class="price-row">
+            <span class="price-amount">$150</span>
+            <span class="price-label">per month</span>
+          </div>
+        </div>
+        <div class="pricing-footer">
+          <p class="roi-note"><strong>ROI:</strong> One extra job per year often pays for the entire system.</p>
+          <a href="#contact" class="btn btn-primary">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section class="section" id="faq">
+    <div class="container">
+      <span class="section-tag">FAQ</span>
+      <h2>Common Questions</h2>
+      
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">
+            How long does setup take?
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Most clients are fully live in 7-14 days. We work fast because we know you've got jobs to run.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-question">
+            Do I own my website?
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Yes. It's your site. If you ever leave, you take it with you. No hostage situations here.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-question">
+            Is there a contract?
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>No long-term contracts. Month-to-month. Cancel anytime with 30 days notice.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-question">
+            What if I'm not tech-savvy?
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>That's exactly why we exist. We handle everything technical. You just focus on your work.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-question">
+            What trades do you work with?
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="trade-tags">
+              <a href="#contact" class="trade-tag" id="industry-0">Deck Builders</a>
+              <a href="#contact" class="trade-tag" id="industry-1">Fence Installers</a>
+              <a href="#contact" class="trade-tag" id="industry-2">Roofers</a>
+              <a href="#contact" class="trade-tag" id="industry-3">Painters</a>
+              <a href="#contact" class="trade-tag" id="industry-4">Landscapers</a>
+              <a href="#contact" class="trade-tag" id="industry-5">Tree Services</a>
+              <a href="#contact" class="trade-tag" id="industry-6">Flooring</a>
+              <a href="#contact" class="trade-tag" id="industry-7">General Contractors</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-question">
+            What areas do you serve?
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>We specialize in the DMV area—Montgomery, Howard, and Frederick Counties—but work with contractors nationwide.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section class="section section-dark" id="contact">
+    <div class="container">
+      <span class="section-tag section-tag-light">Get Started</span>
+      <h2 class="text-white">Request Your Free 10-Min Audit</h2>
+      <p class="section-intro text-light">Tell us about your business and we'll show you exactly where you're losing leads.</p>
+      
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/mgonwdye" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your Name *</label>
+            <input type="text" id="name" name="name" required placeholder="John Smith">
+          </div>
+          <div class="form-group">
+            <label for="business">Business Name *</label>
+            <input type="text" id="business" name="business" required placeholder="Smith Contracting">
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Phone *</label>
+            <input type="tel" id="phone" name="phone" required placeholder="(301) 555-0123">
+          </div>
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required placeholder="john@smithcontracting.com">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="service">Service Type *</label>
+          <select id="service" name="service" required>
+            <option value="">Select your trade...</option>
+            <option value="Deck Building">Deck Building</option>
+            <option value="Fence Installation">Fence Installation</option>
+            <option value="Roofing">Roofing</option>
+            <option value="Painting">Painting</option>
+            <option value="Landscaping">Landscaping</option>
+            <option value="Tree Service">Tree Service</option>
+            <option value="Flooring">Flooring</option>
+            <option value="General Contracting">General Contracting</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="message">Anything else we should know?</label>
+          <textarea id="message" name="message" rows="4" placeholder="Tell us about your business, current challenges, or questions..."></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-large btn-full" id="submitBtn">
+          Send My Request
+        </button>
+        <p class="form-note">We respond within 15 minutes during business hours.</p>
+      </form>
+      
+      <div class="form-success" id="formSuccess">
+        <svg width="64" height="64" fill="none" stroke="#22c55e" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+        <h3>Thanks! We got your request.</h3>
+        <p>Expect a call or text within 15 minutes during business hours.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo">The Groove Media</span>
+        <p>Serving contractors in the DMV area.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#hero">Home</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-copy">
+        <p>&copy; 2026 The Groove Media. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>
