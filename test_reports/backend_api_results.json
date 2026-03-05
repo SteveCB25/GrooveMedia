@@ -3,62 +3,62 @@
     "total_tests": 9,
     "passed_tests": 9,
     "success_rate": 100.0,
-    "timestamp": "2026-03-05T19:05:25.401906"
+    "timestamp": "2026-03-05T19:10:36.728952"
   },
   "test_details": [
     {
       "test": "Health Check",
       "status": "PASS",
       "details": "Status: 200, Formspree: False",
-      "timestamp": "2026-03-05T19:05:24.029017"
+      "timestamp": "2026-03-05T19:10:35.393355"
     },
     {
       "test": "Admin Login",
       "status": "PASS",
       "details": "Token received",
-      "timestamp": "2026-03-05T19:05:24.184526"
+      "timestamp": "2026-03-05T19:10:35.809563"
     },
     {
       "test": "Admin Login Invalid",
       "status": "PASS",
       "details": "Status: 401 (Expected 401)",
-      "timestamp": "2026-03-05T19:05:24.315407"
+      "timestamp": "2026-03-05T19:10:35.944222"
     },
     {
       "test": "Create Lead",
       "status": "PASS",
-      "details": "Lead ID: 1ece964b-b440-4e7d-b759-577e410bdd99",
-      "timestamp": "2026-03-05T19:05:24.563898"
+      "details": "Lead ID: 87c796be-0d0d-48c8-8353-da2023855063",
+      "timestamp": "2026-03-05T19:10:36.078640"
     },
     {
       "test": "Lead Validation",
       "status": "PASS",
       "details": "Status: 422 (Expected 422)",
-      "timestamp": "2026-03-05T19:05:24.765478"
+      "timestamp": "2026-03-05T19:10:36.205434"
     },
     {
       "test": "Get Leads",
       "status": "PASS",
-      "details": "Retrieved 1 leads",
-      "timestamp": "2026-03-05T19:05:24.879353"
+      "details": "Retrieved 3 leads",
+      "timestamp": "2026-03-05T19:10:36.338549"
     },
     {
       "test": "Get Leads Count",
       "status": "PASS",
-      "details": "Count: 1",
-      "timestamp": "2026-03-05T19:05:25.065383"
+      "details": "Count: 3",
+      "timestamp": "2026-03-05T19:10:36.452662"
     },
     {
       "test": "Delete Lead",
       "status": "PASS",
-      "details": "Status: 200, Lead ID: 1ece964b-b440-4e7d-b759-577e410bdd99",
-      "timestamp": "2026-03-05T19:05:25.229358"
+      "details": "Status: 200, Lead ID: 87c796be-0d0d-48c8-8353-da2023855063",
+      "timestamp": "2026-03-05T19:10:36.603341"
     },
     {
       "test": "Delete Nonexistent Lead",
       "status": "PASS",
       "details": "Status: 404 (Expected 404)",
-      "timestamp": "2026-03-05T19:05:25.401004"
+      "timestamp": "2026-03-05T19:10:36.728023"
     }
   ]
 }

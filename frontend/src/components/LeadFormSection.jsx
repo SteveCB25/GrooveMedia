@@ -116,7 +116,7 @@ export default function LeadFormSection() {
           {/* Form */}
           <form
             onSubmit={handleSubmit}
-            className="card-base p-6 md:p-10"
+            className="card-base p-6 md:p-10 relative z-10"
             data-testid="lead-form"
           >
             {/* Live Status Badge */}
@@ -224,25 +224,24 @@ export default function LeadFormSection() {
               </div>
 
               {/* Service Type */}
-              <div>
+              <div className="relative z-20">
                 <Label htmlFor="service_type" className="label-base">
                   Service Type *
                 </Label>
                 <Select
                   value={formData.service_type}
                   onValueChange={handleServiceChange}
-                  required
                 >
                   <SelectTrigger
                     id="service_type"
-                    className="input-base"
+                    className="input-base relative z-20"
                     data-testid="select-service-type"
                   >
                     <SelectValue placeholder="Select your trade" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="z-[100]">
                     {services.map((service) => (
-                      <SelectItem key={service} value={service}>
+                      <SelectItem key={service} value={service} data-testid={`service-option-${service.toLowerCase()}`}>
                         {service}
                       </SelectItem>
                     ))}
@@ -252,11 +251,11 @@ export default function LeadFormSection() {
             </div>
 
             {/* Submit Button */}
-            <div className="mt-8">
+            <div className="mt-8 relative z-10">
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="btn-primary w-full text-lg flex items-center justify-center gap-2"
+                className="btn-primary w-full text-lg flex items-center justify-center gap-2 relative z-10"
                 data-testid="submit-btn"
               >
                 {isSubmitting ? (
