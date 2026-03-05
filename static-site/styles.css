@@ -325,8 +325,14 @@ button {
 }
 
 .hero-image {
-  display: flex;
+  display: none;
   justify-content: center;
+}
+
+@media (min-width: 900px) {
+  .hero-image {
+    display: flex;
+  }
 }
 
 .hero-image img {
