@@ -25,7 +25,7 @@ export default function PricingSection({ onGetStarted }) {
             className="bg-navy rounded-sm p-8 md:p-12 mb-8"
             data-testid="pricing-card"
           >
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
+            <div className="flex flex-col items-center text-center gap-6 mb-8">
               <div>
                 <h3 className="font-heading font-bold text-2xl text-white mb-2">
                   Complete Lead Capture System
@@ -34,8 +34,8 @@ export default function PricingSection({ onGetStarted }) {
                   Website + Automation + Lead Tracking
                 </p>
               </div>
-              <div className="text-left md:text-right">
-                <div className="flex items-baseline gap-2 flex-wrap">
+              <div>
+                <div className="flex items-baseline gap-2 flex-wrap justify-center">
                   <span className="font-heading font-extrabold text-4xl md:text-5xl text-orange">
                     $500
                   </span>
@@ -49,13 +49,15 @@ export default function PricingSection({ onGetStarted }) {
               </div>
             </div>
 
-            <Button
-              onClick={onGetStarted}
-              className="btn-primary w-full md:w-auto text-lg px-10 min-h-[56px]"
-              data-testid="pricing-cta"
-            >
-              Get Started
-            </Button>
+            <div className="flex justify-center">
+              <Button
+                onClick={onGetStarted}
+                className="bg-orange hover:bg-orange-hover text-white font-bold uppercase tracking-wider shadow-lg hover:shadow-xl active:scale-95 transition-shadow text-lg px-10 min-h-[56px] rounded-sm"
+                data-testid="pricing-cta"
+              >
+                Get Started
+              </Button>
+            </div>
           </div>
 
           {/* ROI Box */}

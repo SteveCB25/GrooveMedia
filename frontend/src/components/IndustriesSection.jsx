@@ -4,7 +4,9 @@ import {
   Home, 
   Scissors, 
   PaintBucket, 
-  Wrench 
+  Wrench,
+  Square,
+  HardHat
 } from "lucide-react";
 
 const industries = [
@@ -14,6 +16,8 @@ const industries = [
   { icon: Scissors, name: "Tree Removal" },
   { icon: PaintBucket, name: "Painters" },
   { icon: Home, name: "Roofers" },
+  { icon: Square, name: "Flooring" },
+  { icon: HardHat, name: "General Contracting" },
 ];
 
 export default function IndustriesSection() {
@@ -35,7 +39,7 @@ export default function IndustriesSection() {
         </div>
 
         {/* Industries Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {industries.map((industry, index) => (
             <div
               key={index}

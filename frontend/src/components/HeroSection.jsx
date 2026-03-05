@@ -24,7 +24,7 @@ export default function HeroSection({ onGetAudit }) {
             data-testid="local-badge"
           >
             <span className="text-white/90 font-body text-sm font-medium">
-              Serving Montgomery, Howard & Frederick Counties
+              Serving the DMV area
             </span>
           </div>
 
@@ -49,7 +49,7 @@ export default function HeroSection({ onGetAudit }) {
           {/* CTA Button - Large and Tappable */}
           <Button
             onClick={onGetAudit}
-            className="btn-primary text-lg flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 min-h-[56px]"
+            className="bg-orange hover:bg-orange-hover text-white font-bold uppercase tracking-wider shadow-lg hover:shadow-xl active:scale-95 transition-shadow text-lg flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 min-h-[56px] rounded-sm"
             data-testid="hero-cta-btn"
           >
             Get a Free Website Check

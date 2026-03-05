@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Phone } from "lucide-react";
 import { Button } from "./ui/button";
 
 export default function Header({ onGetAudit, scrollToSection }) {
@@ -59,15 +58,6 @@ export default function Header({ onGetAudit, scrollToSection }) {
 
           {/* CTA Buttons */}
           <div className="flex items-center gap-3">
-            {/* Mobile Call Button - Large and Tappable */}
-            <a
-              href="tel:+1234567890"
-              className="md:hidden flex items-center justify-center w-12 h-12 bg-orange text-white rounded-sm shadow-lg active:scale-95 transition-transform"
-              data-testid="mobile-call-btn"
-            >
-              <Phone className="w-5 h-5" />
-            </a>
-
             {/* Desktop CTA */}
             <Button
               onClick={onGetAudit}

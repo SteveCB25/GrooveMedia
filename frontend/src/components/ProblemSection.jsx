@@ -37,7 +37,7 @@ export default function ProblemSection() {
               You aren't losing jobs to competitors—you're losing them to slow follow-up.
             </h2>
             <p className="text-neutral-800/70 font-body text-lg">
-              When a homeowner needs a quote, they call 3-5 contractors. The first one to respond usually gets the job. Here's where most contractors leak money:
+              When a homeowner needs a quote, they reach out to 3-5 contractors. The first one to respond usually gets the job. Here's where most contractors leak money:
             </p>
           </div>
 
