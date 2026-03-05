@@ -1,0 +1,132 @@
+{
+  "brand_identity": {
+    "name": "Groove Media (Local Lead Systems)",
+    "tone": "Professional, Urgent, Trustworthy, Local, No-fluff",
+    "target_audience": "Busy home service contractors (Roofers, Landscapers, Painters) in Maryland",
+    "emotional_archetype": "The Performance Pro (Elite Trade)",
+    "key_values": ["Speed", "Local Trust", "Results", "Automation"]
+  },
+  "typography": {
+    "headings": {
+      "family": "Barlow Condensed, sans-serif",
+      "weights": ["700", "800"],
+      "usage": "All section titles, hero headlines, heavy impact text",
+      "letter_spacing": "tracking-tight"
+    },
+    "body": {
+      "family": "Inter, sans-serif",
+      "weights": ["400", "500", "600"],
+      "usage": "Paragraphs, list items, form labels",
+      "letter_spacing": "tracking-normal"
+    },
+    "mono": {
+      "family": "JetBrains Mono, monospace",
+      "usage": "Data metrics, phone numbers, codes"
+    }
+  },
+  "colors": {
+    "primary": {
+      "navy": "#1B365D",
+      "navy_dark": "#12243d",
+      "navy_light": "#2a4d80"
+    },
+    "action": {
+      "orange": "#FF6B00",
+      "orange_hover": "#e66000",
+      "orange_light": "#fff0e0"
+    },
+    "neutral": {
+      "white": "#ffffff",
+      "off_white": "#F8F9FA",
+      "grey_100": "#f1f5f9",
+      "grey_200": "#e2e8f0",
+      "grey_800": "#1e293b",
+      "black": "#0f172a"
+    },
+    "status": {
+      "success": "#22c55e",
+      "error": "#ef4444",
+      "live_pulse": "#22c55e"
+    }
+  },
+  "visual_enhancers": {
+    "border_radius": "rounded-none md:rounded-sm",
+    "shadows": "shadow-sm hover:shadow-md transition-shadow",
+    "gradients": "None for backgrounds. Use solid colors or subtle noise textures.",
+    "textures": "Subtle noise on Navy backgrounds to add grit.",
+    "icons": "Lucide React (already installed). Use roughly 24px-32px for UI, 48px for feature icons."
+  },
+  "layout_strategy": {
+    "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    "section_spacing": "py-16 md:py-24",
+    "grid_system": "Mobile: grid-cols-1, Tablet: grid-cols-2, Desktop: grid-cols-3 or grid-cols-12",
+    "mobile_first": {
+      "buttons": "w-full min-h-[48px] text-lg font-bold uppercase tracking-wide",
+      "header": "Sticky with 'Call Now' button always visible",
+      "font_size": "Base 16px, Headings clamp(2.5rem, 5vw, 4rem)"
+    }
+  },
+  "components_usage": {
+    "buttons": {
+      "primary": "bg-[#FF6B00] hover:bg-[#e66000] text-white rounded-sm font-bold uppercase tracking-wider shadow-lg hover:shadow-xl transition-all active:scale-95",
+      "secondary": "bg-transparent border-2 border-[#1B365D] text-[#1B365D] hover:bg-[#1B365D] hover:text-white rounded-sm font-bold uppercase transition-colors"
+    },
+    "cards": {
+      "style": "bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all rounded-sm",
+      "pricing": "border-2 border-gray-200 hover:border-[#1B365D] relative overflow-hidden"
+    },
+    "forms": {
+      "input": "h-12 bg-gray-50 border-gray-300 focus:border-[#1B365D] focus:ring-1 focus:ring-[#1B365D] rounded-sm text-base",
+      "label": "text-sm font-bold text-[#1B365D] uppercase tracking-wide mb-1 block"
+    }
+  },
+  "motion": {
+    "hover": "scale-[1.02] transition-transform duration-200 ease-out",
+    "scroll": "Use IntersectionObserver for fade-in-up animations on scroll",
+    "live_indicator": "animate-pulse"
+  },
+  "image_urls": {
+    "hero_bg": "https://images.unsplash.com/photo-1722876720000-f39b65b7d4a1?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "services": {
+      "roofing": "https://images.unsplash.com/photo-1726589004565-bedfba94d3a2?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "landscaping": "https://images.unsplash.com/photo-1689728318937-17d24bc0a65c?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "painting": "https://images.unsplash.com/photo-1759406066673-f76869a4e6db?crop=entropy&cs=srgb&fm=jpg&q=85"
+    },
+    "testimonials": [
+      "https://randomuser.me/api/portraits/men/32.jpg",
+      "https://randomuser.me/api/portraits/men/45.jpg",
+      "https://randomuser.me/api/portraits/women/22.jpg"
+    ]
+  },
+  "instructions_to_main_agent": {
+    "setup": [
+      "Add Google Fonts for Barlow Condensed (Weights 700, 800) and Inter (400, 500, 600) in public/index.html",
+      "Configure Tailwind colors in tailwind.config.js as per the palette",
+      "Implement smooth scrolling behavior globally in CSS"
+    ],
+    "implementation_order": [
+      "1. Setup Theme & Typography",
+      "2. Build Components (Buttons, Cards, Inputs)",
+      "3. Construct Landing Page Sections (Hero, Features, Services, Form, Footer)",
+      "4. Build Admin Dashboard (Leads Table, Login)",
+      "5. Connect Formspree & Mock Backend"
+    ],
+    "critical_rules": [
+      "Mobile navigation must be extremely simple. No hamburgers if possible, just direct Call/Form access.",
+      "The 'Live Status' indicator must be visible in the Hero section.",
+      "Forms must use accessible labels and high-contrast inputs.",
+      "Do not use generic Lorem Ipsum. Use realistic copy related to contractors (e.g., 'Get More Leads', 'Roofing Leads in Rockville')."
+    ]
+  },
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy",
+    "You MUST NOT apply universal transition. Eg: transition: all. This results in breaking transforms. Always add transitions for specific interactive elements like button, input excluding transforms",
+    "You MUST NOT center align the app container, ie do not add .App { text-align: center; } in the css file. This disrupts the human natural reading flow of text",
+    "Always use modern button styles like pill-shaped, or sharp button with interaction animations & color relevant to the app style",
+    "NEVER: use AI assistant Emoji characters like 🤖🧠💭💡🔮 etc for icons.",
+    "Every interaction needs micro-animations - hover states, transitions. Static = dead.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap."
+  ]
+}
