@@ -51,7 +51,7 @@ export default function PricingSection({ onGetStarted }) {
 
             <Button
               onClick={onGetStarted}
-              className="btn-primary w-full md:w-auto text-lg px-10"
+              className="btn-primary w-full md:w-auto text-lg px-10 min-h-[56px]"
               data-testid="pricing-cta"
             >
               Get Started
