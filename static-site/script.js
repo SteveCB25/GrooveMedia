@@ -151,5 +151,49 @@ document.addEventListener('DOMContentLoaded', function() {
     el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     observer.observe(el);
   });
+
+
+  // ========== INDUSTRY TABS TO FORM ==========
+  // Map industry tab values to form dropdown values
+  const industryToServiceType = {
+    'Deck Builders': 'Deck Building',
+    'Fence Installers': 'Fence Installation',
+    'Roofers': 'Roofing',
+    'Painters': 'Painting',
+    'Landscapers': 'Landscaping',
+    'Tree Services': 'Tree Service',
+    'Flooring': 'Flooring',
+    'General Contractors': 'General Contracting'
+  };
+
+  // Get all industry tab buttons
+  const industryTabs = document.querySelectorAll('[id^="industry-"]');
+  
+  industryTabs.forEach((tab, index) => {
+    tab.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Get the contractor type from the tab text
+      const contractorType = tab.textContent.trim();
+      const serviceTypeValue = industryToServiceType[contractorType];
+      
+      // Scroll to the form
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      
+      // Select the value in the dropdown after a short delay for scroll
+      setTimeout(function() {
+        const serviceTypeSelect = document.getElementById('service');
+        if (serviceTypeSelect && serviceTypeValue) {
+          serviceTypeSelect.value = serviceTypeValue;
+          
+          // Trigger change event
+          serviceTypeSelect.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      }, 500);
+    });
+  });
   
 });
