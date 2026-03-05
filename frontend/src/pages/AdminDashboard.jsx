@@ -121,7 +121,7 @@ export default function AdminDashboard() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <a href="/" className="font-heading font-extrabold text-xl text-white">
-                Local Lead Systems
+                Groove Media
               </a>
               <span className="text-white/50 font-body text-sm hidden sm:inline">
                 Admin Dashboard

@@ -11,7 +11,7 @@ export default function Footer() {
           {/* Logo & Location */}
           <div className="text-center md:text-left">
             <span className="font-heading font-extrabold text-xl text-white">
-              Local Lead Systems
+              Groove Media
             </span>
             <p className="text-white/40 font-body text-sm mt-1">
               Montgomery • Howard • Frederick Counties
@@ -40,7 +40,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="border-t border-white/10 mt-6 pt-6">
           <p className="text-center text-white/30 font-body text-sm">
-            © {currentYear} Local Lead Systems
+            © {currentYear} Groove Media
           </p>
         </div>
       </div>

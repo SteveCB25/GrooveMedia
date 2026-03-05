@@ -30,7 +30,7 @@ export default function Header({ onGetAudit, scrollToSection }) {
             data-testid="logo"
           >
             <span className="font-heading font-extrabold text-xl md:text-2xl text-navy tracking-tight">
-              Local Lead Systems
+              Groove Media
             </span>
           </a>
 

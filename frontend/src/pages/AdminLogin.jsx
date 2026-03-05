@@ -52,7 +52,7 @@ export default function AdminLogin() {
         <div className="text-center mb-8">
           <a href="/" className="inline-block">
             <span className="font-heading font-extrabold text-2xl text-white">
-              Local Lead Systems
+              Groove Media
             </span>
           </a>
           <p className="text-white/60 font-body mt-2">Admin Dashboard</p>
