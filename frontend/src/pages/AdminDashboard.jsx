@@ -120,8 +120,8 @@ export default function AdminDashboard() {
         <div className="container-custom py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <a href="/" className="font-heading font-extrabold text-2xl text-white">
-                Groove Media
+              <a href="/" className="font-heading font-extrabold text-xl text-white">
+                Local Lead Systems
               </a>
               <span className="text-white/50 font-body text-sm hidden sm:inline">
                 Admin Dashboard

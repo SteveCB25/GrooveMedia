@@ -1,23 +1,21 @@
-import { PhoneMissed, Clock, Star } from "lucide-react";
+import { PhoneMissed, MessageCircleOff, Globe, Star } from "lucide-react";
 
-const problems = [
+const leaks = [
   {
     icon: PhoneMissed,
-    title: "Missed Calls = Lost Money",
-    description:
-      "Every call you miss while on a job goes to your competitor. The average contractor loses $15,000+ per year to missed calls.",
+    text: "Missed calls while you're on a job",
   },
   {
-    icon: Clock,
-    title: "Slow Quotes = Lost Jobs",
-    description:
-      "Homeowners contact 3-5 contractors. The first to respond gets the job 78% of the time. Can you respond in under 5 minutes?",
+    icon: MessageCircleOff,
+    text: "Slow text replies that lose the customer",
+  },
+  {
+    icon: Globe,
+    text: "An outdated website (or no website at all)",
   },
   {
     icon: Star,
-    title: "No Reviews = Low Visibility",
-    description:
-      "Google shows businesses with 4+ stars first. Without automated review requests, you're invisible to new customers.",
+    text: "Zero reviews to build trust",
   },
 ];
 
@@ -29,39 +27,37 @@ export default function ProblemSection() {
       className="section-spacing bg-neutral-offWhite"
     >
       <div className="container-custom">
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <p className="text-orange font-heading font-bold uppercase tracking-wider mb-3">
-            The Problem
-          </p>
-          <h2 className="heading-lg text-navy mb-4">
-            You're Losing Jobs While You Work
-          </h2>
-          <p className="text-neutral-800/70 font-body text-lg max-w-2xl mx-auto">
-            Most Maryland contractors don't have time to answer every call or
-            follow up on every lead. Here's what that costs you:
-          </p>
-        </div>
+        <div className="max-w-3xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-10">
+            <p className="text-orange font-heading font-bold uppercase tracking-wider mb-3">
+              The Leaky Bucket
+            </p>
+            <h2 className="heading-lg text-navy mb-6">
+              You aren't losing jobs to competitors—you're losing them to slow follow-up.
+            </h2>
+            <p className="text-neutral-800/70 font-body text-lg">
+              When a homeowner needs a quote, they call 3-5 contractors. The first one to respond usually gets the job. Here's where most contractors leak money:
+            </p>
+          </div>
 
-        {/* Problem Cards */}
-        <div className="grid md:grid-cols-3 gap-6">
-          {problems.map((problem, index) => (
-            <div
-              key={index}
-              className="card-base p-8 group hover:border-navy/20 transition-all duration-200"
-              data-testid={`problem-card-${index}`}
-            >
-              <div className="w-14 h-14 bg-orange/10 rounded-sm flex items-center justify-center mb-6 group-hover:bg-orange/20 transition-colors">
-                <problem.icon className="w-7 h-7 text-orange" />
+          {/* Leak Points */}
+          <div className="grid sm:grid-cols-2 gap-4">
+            {leaks.map((leak, index) => (
+              <div
+                key={index}
+                className="flex items-center gap-4 bg-white border border-gray-200 rounded-sm p-5 shadow-sm"
+                data-testid={`leak-item-${index}`}
+              >
+                <div className="w-12 h-12 bg-red-50 rounded-sm flex items-center justify-center flex-shrink-0">
+                  <leak.icon className="w-6 h-6 text-red-500" />
+                </div>
+                <p className="text-neutral-800 font-body font-medium">
+                  {leak.text}
+                </p>
               </div>
-              <h3 className="font-heading font-bold text-xl text-navy mb-3">
-                {problem.title}
-              </h3>
-              <p className="text-neutral-800/70 font-body leading-relaxed">
-                {problem.description}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

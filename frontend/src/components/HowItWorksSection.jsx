@@ -2,25 +2,25 @@ import { Globe, MessageSquare, TrendingUp } from "lucide-react";
 
 const steps = [
   {
-    step: "01",
+    step: "1",
     icon: Globe,
-    title: "Upgrade Web Presence",
+    title: "Upgrade your website",
     description:
-      "We build you a fast, mobile-friendly website that ranks on Google and converts visitors into leads. Simple, professional, effective.",
+      "A modern site that actually works on a phone and captures quote requests. No fancy stuff—just what gets you jobs.",
   },
   {
-    step: "02",
+    step: "2",
     icon: MessageSquare,
-    title: "Instant Text-Back",
+    title: "Capture every lead",
     description:
-      "When someone calls and you can't answer, they get an instant text: 'Hey, this is [Your Name]. I'm on a job but saw you called. How can I help?' Leads never go cold.",
+      "When a customer messages you, they get an instant text response so they stop calling other guys. You follow up when you're ready.",
   },
   {
-    step: "03",
+    step: "3",
     icon: TrendingUp,
-    title: "Track & Win",
+    title: "Track and win more jobs",
     description:
-      "See every lead, every call, every booked job in one dashboard. Know exactly what's working and where your next customer is coming from.",
+      "We organize your leads so you can follow up fast and get 5-star reviews automatically after every finished job.",
   },
 ];
 
@@ -33,46 +33,34 @@ export default function HowItWorksSection() {
     >
       <div className="container-custom">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <p className="text-orange font-heading font-bold uppercase tracking-wider mb-3">
-            The System
+            The 3-Step Solution
           </p>
-          <h2 className="heading-lg text-navy mb-4">How It Works</h2>
-          <p className="text-neutral-800/70 font-body text-lg max-w-2xl mx-auto">
-            A simple 3-step system to capture, follow-up, and convert more leads
-            while you focus on the work.
-          </p>
+          <h2 className="heading-lg text-navy mb-4">Simple. No Gimmicks.</h2>
         </div>
 
         {/* Steps */}
-        <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+        <div className="max-w-4xl mx-auto space-y-6">
           {steps.map((item, index) => (
             <div
               key={index}
-              className="relative"
+              className="flex gap-6 items-start bg-neutral-offWhite border border-gray-200 rounded-sm p-6 md:p-8"
               data-testid={`step-card-${index}`}
             >
-              {/* Connector Line (hidden on mobile, shown on md+) */}
-              {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-16 left-1/2 w-full h-0.5 bg-neutral-200 -z-10" />
-              )}
+              {/* Step Number */}
+              <div className="w-14 h-14 bg-navy rounded-sm flex items-center justify-center flex-shrink-0">
+                <span className="text-white font-heading font-bold text-2xl">
+                  {item.step}
+                </span>
+              </div>
 
-              <div className="flex flex-col items-center text-center">
-                {/* Step Number Circle */}
-                <div className="relative mb-6">
-                  <div className="w-32 h-32 bg-navy rounded-sm flex items-center justify-center shadow-lg">
-                    <item.icon className="w-12 h-12 text-white" />
-                  </div>
-                  <span className="absolute -top-3 -right-3 w-10 h-10 bg-orange text-white font-heading font-bold text-lg flex items-center justify-center rounded-sm shadow-md">
-                    {item.step}
-                  </span>
-                </div>
-
-                {/* Content */}
-                <h3 className="font-heading font-bold text-2xl text-navy mb-3">
+              {/* Content */}
+              <div>
+                <h3 className="font-heading font-bold text-xl md:text-2xl text-navy mb-2">
                   {item.title}
                 </h3>
-                <p className="text-neutral-800/70 font-body leading-relaxed max-w-xs">
+                <p className="text-neutral-800/70 font-body leading-relaxed">
                   {item.description}
                 </p>
               </div>

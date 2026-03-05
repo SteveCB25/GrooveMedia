@@ -1,4 +1,4 @@
-import { ArrowRight, Zap } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
 
 export default function HeroSection({ onGetAudit }) {
@@ -18,17 +18,13 @@ export default function HeroSection({ onGetAudit }) {
 
       <div className="container-custom relative z-10">
         <div className="max-w-4xl">
-          {/* Live Status Indicator */}
+          {/* Local Hook Badge */}
           <div
-            className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-8"
-            data-testid="live-status-indicator"
+            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-8"
+            data-testid="local-badge"
           >
-            <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-success"></span>
-            </span>
             <span className="text-white/90 font-body text-sm font-medium">
-              Automation Active: Instant Text-Back Enabled
+              Serving Montgomery, Howard & Frederick Counties
             </span>
           </div>
 
@@ -44,64 +40,35 @@ export default function HeroSection({ onGetAudit }) {
 
           {/* Subheadline */}
           <p
-            className="text-xl md:text-2xl text-white/80 font-body font-normal mb-6 max-w-2xl leading-relaxed"
+            className="text-xl md:text-2xl text-white/80 font-body font-normal mb-10 max-w-2xl leading-relaxed"
             data-testid="hero-subheadline"
           >
-            I build simple websites and follow-up automation for Maryland
-            contractors so you never lose a lead to a slow reply.
+            Simple websites and automated responses designed for contractors and outdoor service businesses.
           </p>
 
-          {/* Local Hook */}
-          <p
-            className="text-white/60 font-body text-base mb-10"
-            data-testid="hero-local-hook"
+          {/* CTA Button - Large and Tappable */}
+          <Button
+            onClick={onGetAudit}
+            className="btn-primary text-lg flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 min-h-[56px]"
+            data-testid="hero-cta-btn"
           >
-            Serving Bethesda, Rockville, Ellicott City, and surrounding areas.
-          </p>
+            Get a Free Website Check
+            <ArrowRight className="w-5 h-5" />
+          </Button>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button
-              onClick={onGetAudit}
-              className="btn-primary text-lg flex items-center justify-center gap-2 w-full sm:w-auto"
-              data-testid="hero-cta-btn"
-            >
-              Get My Free 10-Min Audit
-              <ArrowRight className="w-5 h-5" />
-            </Button>
-
-            <Button
-              onClick={() => {
-                const element = document.getElementById("how-it-works");
-                element?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="btn-secondary border-white/30 text-white hover:bg-white hover:text-navy w-full sm:w-auto"
-              data-testid="hero-secondary-btn"
-            >
-              See How It Works
-            </Button>
-          </div>
-
-          {/* Quick Stats */}
-          <div className="flex flex-wrap gap-8 mt-12 pt-8 border-t border-white/10">
-            <div className="flex items-center gap-2">
-              <Zap className="w-5 h-5 text-orange" />
-              <span className="text-white/80 font-body text-sm">
-                Response in under 15 seconds
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Zap className="w-5 h-5 text-orange" />
-              <span className="text-white/80 font-body text-sm">
-                No contracts required
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Zap className="w-5 h-5 text-orange" />
-              <span className="text-white/80 font-body text-sm">
-                Live in 7 days
-              </span>
-            </div>
+          {/* Quick Trust Points */}
+          <div className="flex flex-wrap gap-6 mt-10 pt-8 border-t border-white/10">
+            <span className="text-white/70 font-body text-sm">
+              No contracts
+            </span>
+            <span className="text-white/30">•</span>
+            <span className="text-white/70 font-body text-sm">
+              Live in 7-14 days
+            </span>
+            <span className="text-white/30">•</span>
+            <span className="text-white/70 font-body text-sm">
+              You own your site
+            </span>
           </div>
         </div>
       </div>

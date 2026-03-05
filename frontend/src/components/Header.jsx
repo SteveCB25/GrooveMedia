@@ -30,13 +30,13 @@ export default function Header({ onGetAudit, scrollToSection }) {
             className="flex items-center gap-2"
             data-testid="logo"
           >
-            <span className="font-heading font-extrabold text-2xl md:text-3xl text-navy tracking-tight">
-              Groove Media
+            <span className="font-heading font-extrabold text-xl md:text-2xl text-navy tracking-tight">
+              Local Lead Systems
             </span>
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8" data-testid="desktop-nav">
+          <nav className="hidden md:flex items-center gap-6" data-testid="desktop-nav">
             <button
               onClick={() => scrollToSection("how-it-works")}
               className="font-body font-medium text-neutral-800 hover:text-navy transition-colors"
@@ -47,7 +47,7 @@ export default function Header({ onGetAudit, scrollToSection }) {
               onClick={() => scrollToSection("pricing")}
               className="font-body font-medium text-neutral-800 hover:text-navy transition-colors"
             >
-              Packages
+              Pricing
             </button>
             <button
               onClick={() => scrollToSection("faq")}
@@ -59,7 +59,7 @@ export default function Header({ onGetAudit, scrollToSection }) {
 
           {/* CTA Buttons */}
           <div className="flex items-center gap-3">
-            {/* Mobile Call Button */}
+            {/* Mobile Call Button - Large and Tappable */}
             <a
               href="tel:+1234567890"
               className="md:hidden flex items-center justify-center w-12 h-12 bg-orange text-white rounded-sm shadow-lg active:scale-95 transition-transform"
@@ -74,7 +74,7 @@ export default function Header({ onGetAudit, scrollToSection }) {
               className="btn-primary hidden sm:flex"
               data-testid="header-cta-btn"
             >
-              Get My 10-Min Audit
+              Free Website Check
             </Button>
           </div>
         </div>

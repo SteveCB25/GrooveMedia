@@ -1,58 +1,5 @@
-import { Check, Star } from "lucide-react";
+import { Calculator } from "lucide-react";
 import { Button } from "./ui/button";
-
-const plans = [
-  {
-    name: "Starter",
-    price: "$1,500",
-    period: "/mo",
-    description: "Perfect for contractors just getting started online.",
-    features: [
-      "5-page website",
-      "Mobile responsive",
-      "Basic SEO setup",
-      "Contact form",
-      "Missed call text-back",
-      "Monthly performance report",
-    ],
-    cta: "Get Started",
-    popular: false,
-  },
-  {
-    name: "Growth",
-    price: "$2,500",
-    period: "/mo",
-    description: "For contractors ready to dominate their local market.",
-    features: [
-      "Everything in Starter, plus:",
-      "10-page website",
-      "Google Business optimization",
-      "Review request automation",
-      "Lead follow-up sequences",
-      "Two-way texting",
-      "Weekly performance calls",
-    ],
-    cta: "Get Started",
-    popular: true,
-  },
-  {
-    name: "Pro",
-    price: "$3,500",
-    period: "/mo",
-    description: "Full-service lead generation for established contractors.",
-    features: [
-      "Everything in Growth, plus:",
-      "Unlimited pages",
-      "Custom landing pages",
-      "Advanced automation flows",
-      "Priority support",
-      "Dedicated account manager",
-      "Quarterly strategy sessions",
-    ],
-    cta: "Get Started",
-    popular: false,
-  },
-];
 
 export default function PricingSection({ onGetStarted }) {
   return (
@@ -65,88 +12,89 @@ export default function PricingSection({ onGetStarted }) {
         {/* Section Header */}
         <div className="text-center mb-12">
           <p className="text-orange font-heading font-bold uppercase tracking-wider mb-3">
-            Pricing
+            Simple Pricing
           </p>
           <h2 className="heading-lg text-navy mb-4">
-            Simple, Transparent Pricing
+            One price. No games.
           </h2>
-          <p className="text-neutral-800/70 font-body text-lg max-w-2xl mx-auto">
-            No hidden fees. No long-term contracts. Cancel anytime.
-          </p>
         </div>
 
-        {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-          {plans.map((plan, index) => (
-            <div
-              key={index}
-              className={`relative card-base p-8 flex flex-col ${
-                plan.popular
-                  ? "border-2 border-navy ring-4 ring-navy/10"
-                  : "border border-gray-200"
-              }`}
-              data-testid={`pricing-card-${plan.name.toLowerCase()}`}
-            >
-              {/* Popular Badge */}
-              {plan.popular && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span className="inline-flex items-center gap-1 bg-orange text-white font-heading font-bold text-sm uppercase tracking-wider px-4 py-1.5 rounded-sm shadow-lg">
-                    <Star className="w-4 h-4 fill-current" />
-                    Most Popular
-                  </span>
-                </div>
-              )}
-
-              {/* Plan Header */}
-              <div className="mb-6 pt-2">
-                <h3 className="font-heading font-bold text-2xl text-navy mb-2">
-                  {plan.name}
+        <div className="max-w-4xl mx-auto">
+          {/* Pricing Card */}
+          <div
+            className="bg-navy rounded-sm p-8 md:p-12 mb-8"
+            data-testid="pricing-card"
+          >
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
+              <div>
+                <h3 className="font-heading font-bold text-2xl text-white mb-2">
+                  Complete Lead Capture System
                 </h3>
-                <div className="flex items-baseline gap-1">
-                  <span className="font-heading font-extrabold text-4xl text-navy">
-                    {plan.price}
-                  </span>
-                  <span className="text-neutral-800/60 font-body">
-                    {plan.period}
-                  </span>
-                </div>
-                <p className="text-neutral-800/70 font-body text-sm mt-2">
-                  {plan.description}
+                <p className="text-white/70 font-body">
+                  Website + Automation + Lead Tracking
                 </p>
               </div>
-
-              {/* Features */}
-              <ul className="space-y-3 mb-8 flex-grow">
-                {plan.features.map((feature, fIndex) => (
-                  <li key={fIndex} className="flex items-start gap-3">
-                    <div className="w-5 h-5 bg-success/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <Check className="w-3 h-3 text-success" />
-                    </div>
-                    <span className="text-neutral-800/80 font-body text-sm">
-                      {feature}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* CTA Button */}
-              <Button
-                onClick={onGetStarted}
-                className={`w-full ${
-                  plan.popular ? "btn-primary" : "btn-secondary"
-                }`}
-                data-testid={`pricing-cta-${plan.name.toLowerCase()}`}
-              >
-                {plan.cta}
-              </Button>
+              <div className="text-left md:text-right">
+                <div className="flex items-baseline gap-2 flex-wrap">
+                  <span className="font-heading font-extrabold text-4xl md:text-5xl text-orange">
+                    $500
+                  </span>
+                  <span className="text-white/70 font-body">setup</span>
+                  <span className="text-white/50 font-body">+</span>
+                  <span className="font-heading font-extrabold text-4xl md:text-5xl text-white">
+                    $150
+                  </span>
+                  <span className="text-white/70 font-body">/month</span>
+                </div>
+              </div>
             </div>
-          ))}
-        </div>
 
-        {/* Trust Note */}
-        <p className="text-center text-neutral-800/60 font-body text-sm mt-8">
-          All plans include a 14-day money-back guarantee. No questions asked.
-        </p>
+            <Button
+              onClick={onGetStarted}
+              className="btn-primary w-full md:w-auto text-lg px-10"
+              data-testid="pricing-cta"
+            >
+              Get Started
+            </Button>
+          </div>
+
+          {/* ROI Box */}
+          <div
+            className="bg-orange/10 border-2 border-orange/30 rounded-sm p-6 md:p-8"
+            data-testid="roi-box"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <Calculator className="w-6 h-6 text-orange" />
+              <h4 className="font-heading font-bold text-xl text-navy">
+                Does it pay for itself?
+              </h4>
+            </div>
+
+            {/* ROI Table */}
+            <div className="overflow-x-auto">
+              <table className="w-full text-left">
+                <tbody className="font-body">
+                  <tr className="border-b border-orange/20">
+                    <td className="py-3 text-neutral-800/70">Your average job value</td>
+                    <td className="py-3 text-navy font-bold text-right">$5,000+</td>
+                  </tr>
+                  <tr className="border-b border-orange/20">
+                    <td className="py-3 text-neutral-800/70">Annual system cost (first year)</td>
+                    <td className="py-3 text-navy font-bold text-right">$2,300</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 text-neutral-800/70">Jobs needed to break even</td>
+                    <td className="py-3 text-success font-bold text-right text-lg">1 job</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p className="mt-6 text-navy font-body font-medium text-center md:text-left">
+              Most contractors only need <span className="text-orange font-bold">one extra job per year</span> for this system to pay for itself.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );

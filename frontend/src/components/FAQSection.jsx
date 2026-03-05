@@ -7,34 +7,19 @@ import {
 
 const faqs = [
   {
-    question: "Do I need to sign a long-term contract?",
+    question: "How long until I'm up and running?",
     answer:
-      "No. All our plans are month-to-month. No contracts, no commitments. If you're not seeing results, you can cancel anytime with 30 days notice. We believe in earning your business every month.",
+      "7-14 days from start to finish. We build fast because we know you've got jobs to run.",
   },
   {
-    question: "Do you run ads or is this just a website?",
+    question: "Do I own the website?",
     answer:
-      "This is not an ad agency. We focus on capturing and converting the leads you're already getting (or missing). Think of us as the foundation that makes everything else work better. If you want to run ads later, your website and follow-up system will be ready.",
+      "Yes. It's your site. If you ever leave, you take it with you. No hostage situations here.",
   },
   {
-    question: "How long until I see results?",
+    question: "Is there a contract?",
     answer:
-      "The text-back system works immediately. You'll capture missed calls from day one. SEO improvements typically take 30-90 days to show results. Most clients see meaningful improvements in lead capture within the first 2 weeks.",
-  },
-  {
-    question: "Will this work for my specific trade?",
-    answer:
-      "Yes. Our system works for any home service contractor: roofers, landscapers, painters, HVAC techs, plumbers, electricians, and more. The principles of fast follow-up and professional web presence apply across all trades.",
-  },
-  {
-    question: "What if I'm not tech-savvy?",
-    answer:
-      "That's exactly why we exist. We handle everything technical. You just answer your phone (or let our text-back do it). We'll train you on the simple dashboard in a 30-minute call, and we're always available for support.",
-  },
-  {
-    question: "How is this different from other marketing companies?",
-    answer:
-      "We're not a marketing agency that manages dozens of services. We do one thing extremely well: help Maryland contractors capture and convert more leads. We're local, we understand the trades, and we're focused on results, not upsells.",
+      "No contracts. Month-to-month. If it's not working for you, cancel anytime. We'd rather earn your business.",
   },
 ];
 
@@ -47,21 +32,18 @@ export default function FAQSection() {
     >
       <div className="container-custom">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-10">
           <p className="text-orange font-heading font-bold uppercase tracking-wider mb-3">
             FAQ
           </p>
           <h2 className="heading-lg text-navy mb-4">
-            Questions? We've Got Answers.
+            Common questions
           </h2>
-          <p className="text-neutral-800/70 font-body text-lg max-w-2xl mx-auto">
-            Everything you need to know before getting started.
-          </p>
         </div>
 
         {/* FAQ Accordion */}
-        <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="space-y-4">
+        <div className="max-w-2xl mx-auto">
+          <Accordion type="single" collapsible className="space-y-3">
             {faqs.map((faq, index) => (
               <AccordionItem
                 key={index}

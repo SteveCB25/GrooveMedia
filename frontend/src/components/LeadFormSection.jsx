@@ -17,11 +17,12 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 const services = [
-  "Roofing",
+  "Deck Building",
+  "Fence Installation",
   "Landscaping",
+  "Tree Removal",
   "Painting",
-  "HVAC",
-  "Plumbing",
+  "Roofing",
   "Other",
 ];
 
@@ -53,7 +54,7 @@ export default function LeadFormSection() {
     try {
       await axios.post(`${API}/leads`, formData);
       setIsSubmitted(true);
-      toast.success("Form submitted successfully! We'll be in touch soon.");
+      toast.success("Got it! We'll be in touch within 15 minutes.");
     } catch (error) {
       console.error("Form submission error:", error);
       toast.error("Something went wrong. Please try again.");
@@ -70,16 +71,15 @@ export default function LeadFormSection() {
         className="section-spacing bg-white"
       >
         <div className="container-custom">
-          <div className="max-w-2xl mx-auto text-center">
+          <div className="max-w-xl mx-auto text-center">
             <div className="w-20 h-20 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-6">
               <CheckCircle className="w-10 h-10 text-success" />
             </div>
             <h2 className="heading-lg text-navy mb-4">
-              Thanks! We Got Your Info.
+              Got it. We'll be in touch.
             </h2>
             <p className="text-neutral-800/70 font-body text-lg mb-6">
-              We'll review your business and get back to you within 15 minutes
-              during business hours. Keep an eye on your phone!
+              Expect a call or text within 15 minutes during business hours.
             </p>
             <div className="inline-flex items-center gap-2 text-success font-body font-medium">
               <Clock className="w-5 h-5" />
@@ -98,46 +98,31 @@ export default function LeadFormSection() {
       className="section-spacing bg-white"
     >
       <div className="container-custom">
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-10">
+          <div className="text-center mb-8">
             <p className="text-orange font-heading font-bold uppercase tracking-wider mb-3">
               Get Started
             </p>
             <h2 className="heading-lg text-navy mb-4">
-              Get a Free 10-Minute Audit
+              Request My Free Website Check
             </h2>
-            <p className="text-neutral-800/70 font-body text-lg">
-              Tell us about your business and we'll show you exactly how to
-              capture more leads.
+            <p className="text-neutral-800/70 font-body">
+              We'll review your current setup and show you what you're missing.
             </p>
           </div>
 
           {/* Form */}
           <form
             onSubmit={handleSubmit}
-            className="card-base p-6 md:p-10 relative z-10"
+            className="bg-neutral-offWhite border border-gray-200 rounded-sm p-6 md:p-8 relative z-10"
             data-testid="lead-form"
           >
-            {/* Live Status Badge */}
-            <div
-              className="flex items-center gap-3 bg-success/10 border border-success/20 rounded-sm px-4 py-3 mb-8"
-              data-testid="form-live-status"
-            >
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-success"></span>
-              </span>
-              <span className="text-success font-body font-medium text-sm">
-                Automation Active: Instant Text-Back Enabled
-              </span>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-5">
               {/* Name */}
               <div>
                 <Label htmlFor="name" className="label-base">
-                  Your Name *
+                  Your Name
                 </Label>
                 <Input
                   id="name"
@@ -155,7 +140,7 @@ export default function LeadFormSection() {
               {/* Business Name */}
               <div>
                 <Label htmlFor="business_name" className="label-base">
-                  Business Name *
+                  Business Name
                 </Label>
                 <Input
                   id="business_name"
@@ -165,7 +150,7 @@ export default function LeadFormSection() {
                   value={formData.business_name}
                   onChange={handleChange}
                   className="input-base"
-                  placeholder="Smith Roofing LLC"
+                  placeholder="Smith Decks & Fencing"
                   data-testid="input-business-name"
                 />
               </div>
@@ -173,7 +158,7 @@ export default function LeadFormSection() {
               {/* Phone */}
               <div>
                 <Label htmlFor="phone" className="label-base">
-                  Phone Number *
+                  Phone Number
                 </Label>
                 <Input
                   id="phone"
@@ -191,7 +176,7 @@ export default function LeadFormSection() {
               {/* Email */}
               <div>
                 <Label htmlFor="email" className="label-base">
-                  Email Address *
+                  Email Address
                 </Label>
                 <Input
                   id="email"
@@ -201,7 +186,7 @@ export default function LeadFormSection() {
                   value={formData.email}
                   onChange={handleChange}
                   className="input-base"
-                  placeholder="john@smithroofing.com"
+                  placeholder="john@smithdecks.com"
                   data-testid="input-email"
                 />
               </div>
@@ -218,7 +203,7 @@ export default function LeadFormSection() {
                   value={formData.website}
                   onChange={handleChange}
                   className="input-base"
-                  placeholder="https://smithroofing.com"
+                  placeholder="https://smithdecks.com"
                   data-testid="input-website"
                 />
               </div>
@@ -226,7 +211,7 @@ export default function LeadFormSection() {
               {/* Service Type */}
               <div className="relative z-20">
                 <Label htmlFor="service_type" className="label-base">
-                  Service Type *
+                  What do you do?
                 </Label>
                 <Select
                   value={formData.service_type}
@@ -241,7 +226,7 @@ export default function LeadFormSection() {
                   </SelectTrigger>
                   <SelectContent className="z-[100]">
                     {services.map((service) => (
-                      <SelectItem key={service} value={service} data-testid={`service-option-${service.toLowerCase()}`}>
+                      <SelectItem key={service} value={service} data-testid={`service-option-${service.toLowerCase().replace(/\s+/g, '-')}`}>
                         {service}
                       </SelectItem>
                     ))}
@@ -250,35 +235,32 @@ export default function LeadFormSection() {
               </div>
             </div>
 
-            {/* Submit Button */}
+            {/* Submit Button - Large and Tappable */}
             <div className="mt-8 relative z-10">
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="btn-primary w-full text-lg flex items-center justify-center gap-2 relative z-10"
+                className="btn-primary w-full text-lg flex items-center justify-center gap-2 min-h-[56px] relative z-10"
                 data-testid="submit-btn"
               >
                 {isSubmitting ? (
                   <>
                     <span className="animate-spin w-5 h-5 border-2 border-white/30 border-t-white rounded-full" />
-                    Submitting...
+                    Sending...
                   </>
                 ) : (
                   <>
                     <Send className="w-5 h-5" />
-                    Get My Free Audit
+                    Get My Free Website Check
                   </>
                 )}
               </Button>
             </div>
 
-            {/* Response Time Badge */}
-            <div className="flex justify-center mt-6">
-              <div className="inline-flex items-center gap-2 text-neutral-800/60 font-body text-sm">
-                <Clock className="w-4 h-4" />
-                <span>Response within 15 minutes</span>
-              </div>
-            </div>
+            {/* Response Time Note */}
+            <p className="text-center text-neutral-800/60 font-body text-sm mt-4">
+              Response within 15 minutes during business hours.
+            </p>
           </form>
         </div>
       </div>

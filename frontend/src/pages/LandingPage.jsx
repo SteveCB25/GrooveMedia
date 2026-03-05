@@ -5,7 +5,7 @@ import ProblemSection from "../components/ProblemSection";
 import HowItWorksSection from "../components/HowItWorksSection";
 import WhatYouGetSection from "../components/WhatYouGetSection";
 import PricingSection from "../components/PricingSection";
-import ProofSection from "../components/ProofSection";
+import IndustriesSection from "../components/IndustriesSection";
 import FAQSection from "../components/FAQSection";
 import LeadFormSection from "../components/LeadFormSection";
 import Footer from "../components/Footer";
@@ -33,7 +33,7 @@ export default function LandingPage() {
         <HowItWorksSection />
         <WhatYouGetSection />
         <PricingSection onGetStarted={openAuditForm} />
-        <ProofSection />
+        <IndustriesSection />
         <FAQSection />
         <LeadFormSection />
       </main>
