@@ -75,6 +75,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         if (response.ok) {
+          // Fire Facebook Pixel event
+          if (typeof fbq === 'function') {
+            fbq('track', 'Schedule');
+          }
           contactForm.classList.add('hidden');
           formSuccess.classList.add('show');
           contactForm.reset();
