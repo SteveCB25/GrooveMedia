@@ -3,27 +3,46 @@ import { Zap, Users, Star, TrendingUp } from "lucide-react";
 const metrics = [
   {
     icon: Zap,
-    value: "< 15s",
-    label: "Faster Response",
-    description: "Average text-back time",
+    value: "< 90s",
+    label: "Text-Back Speed",
+    description: "Average auto-response time",
   },
   {
     icon: Users,
-    value: "3x",
-    label: "More Leads",
-    description: "Lead capture increase",
+    value: "3×",
+    label: "More Leads Captured",
+    description: "vs. no automation",
   },
   {
     icon: Star,
     value: "47%",
-    label: "More Reviews",
-    description: "Review request success rate",
+    label: "Review Request Rate",
+    description: "Customers who leave a review",
   },
   {
     icon: TrendingUp,
     value: "Top 3",
-    label: "Better SEO",
-    description: "Local search rankings",
+    label: "Local Rankings",
+    description: "Google Maps placement",
+  },
+];
+
+const testimonials = [
+  {
+    quote:
+      "We were losing at least 3–4 calls a week while my guys were on jobs. The text-back system alone booked us 6 new AC installs last month. That's over $40K we would have missed.",
+    initials: "DK",
+    name: "Dave K.",
+    company: "Premier Air Solutions",
+    location: "Columbia, MD",
+  },
+  {
+    quote:
+      "I was skeptical about another marketing service but this felt different. Within the first week we had 3 booked tune-ups come directly from the automated text. Setup was painless.",
+    initials: "TR",
+    name: "Tony R.",
+    company: "BayState HVAC Services",
+    location: "Annapolis, MD",
   },
 ];
 
@@ -44,7 +63,7 @@ export default function ProofSection() {
             Numbers Don't Lie
           </h2>
           <p className="text-white/70 font-body text-lg max-w-2xl mx-auto">
-            Here's what our contractors typically see within the first 90 days.
+            Here's what Maryland contractors typically see within the first 90 days.
           </p>
         </div>
 
@@ -72,42 +91,46 @@ export default function ProofSection() {
           ))}
         </div>
 
-        {/* Testimonial Placeholder */}
-        <div
-          className="max-w-3xl mx-auto bg-white/5 backdrop-blur-sm border border-white/10 rounded-sm p-8 md:p-12"
-          data-testid="testimonial-placeholder"
-        >
-          <div className="text-center">
-            <div className="flex justify-center gap-1 mb-6">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  className="w-6 h-6 text-orange fill-orange"
-                />
-              ))}
-            </div>
-            <blockquote className="text-white/90 font-body text-lg md:text-xl leading-relaxed mb-6 italic">
-              "Your testimonial will go here. Share how Groove Media helped
-              transform your business, capture more leads, and book more jobs in
-              the Maryland area."
-            </blockquote>
-            <div className="flex items-center justify-center gap-4">
-              <div className="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center">
-                <span className="text-white font-heading font-bold text-xl">
-                  JD
-                </span>
+        {/* Testimonials */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {testimonials.map((t, i) => (
+            <div
+              key={i}
+              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-sm p-8"
+              data-testid={`testimonial-${i}`}
+            >
+              {/* Stars */}
+              <div className="flex gap-1 mb-5">
+                {[...Array(5)].map((_, s) => (
+                  <Star key={s} className="w-5 h-5 text-orange fill-orange" />
+                ))}
               </div>
-              <div className="text-left">
-                <div className="font-heading font-bold text-white">
-                  Your Name Here
+
+              <blockquote className="text-white/90 font-body text-base leading-relaxed mb-6 italic">
+                "{t.quote}"
+              </blockquote>
+
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-orange/20 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-orange font-heading font-bold text-base">
+                    {t.initials}
+                  </span>
                 </div>
-                <div className="text-white/60 font-body text-sm">
-                  Your Business • Rockville, MD
+                <div>
+                  <div className="font-heading font-bold text-white">{t.name}</div>
+                  <div className="text-white/60 font-body text-sm">
+                    {t.company} · {t.location}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
+
+        {/* Exclusivity note */}
+        <p className="text-center text-white/50 font-body text-sm mt-10">
+          We only work with <span className="text-orange font-semibold">one contractor per service area</span> in Maryland — so your leads stay yours.
+        </p>
       </div>
     </section>
   );

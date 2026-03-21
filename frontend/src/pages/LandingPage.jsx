@@ -2,6 +2,7 @@ import { useState } from "react";
 import Header from "../components/Header";
 import HeroSection from "../components/HeroSection";
 import ProblemSection from "../components/ProblemSection";
+import MissedCallDemoSection from "../components/MissedCallDemoSection";
 import HowItWorksSection from "../components/HowItWorksSection";
 import WhatYouGetSection from "../components/WhatYouGetSection";
 import PricingSection from "../components/PricingSection";
@@ -30,6 +31,7 @@ export default function LandingPage() {
       <main>
         <HeroSection onGetAudit={openAuditForm} />
         <ProblemSection />
+        <MissedCallDemoSection />
         <HowItWorksSection />
         <WhatYouGetSection />
         <PricingSection onGetStarted={openAuditForm} />
