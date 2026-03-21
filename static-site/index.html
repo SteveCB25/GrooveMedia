@@ -122,6 +122,75 @@
     </div>
   </section>
 
+  <!-- ========== MISSED CALL DEMO ========== -->
+  <section class="section" id="demo">
+    <div class="container">
+      <span class="section-tag">See It Live</span>
+      <h2>The Missed Call That Becomes a Booked Job</h2>
+      <p class="section-intro">You're on a roof. Your phone rings. You can't answer. Here's what happens next — automatically.</p>
+
+      <div class="demo-wrap">
+
+        <!-- Phone -->
+        <div class="demo-phone-col">
+          <button class="btn btn-primary demo-trigger-btn" id="demoBtn" onclick="runDemo()">▶ Trigger Demo</button>
+          <div class="phone-shell">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="sms-header">
+                <div class="sms-contact">🏠 Sarah M. — Baltimore, MD</div>
+                <div class="sms-sub">Homeowner · AC not working</div>
+              </div>
+              <div class="sms-body" id="smsBody">
+                <div class="sms-idle" id="smsIdle">Press "Trigger Demo" to watch the automation play out live</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Explainer -->
+        <div class="demo-explainer">
+          <h3>How It Works — In Under 90 Seconds</h3>
+          <div class="demo-steps">
+            <div class="demo-step">
+              <div class="demo-step-num">1</div>
+              <div>
+                <strong>Homeowner calls. You miss it.</strong>
+                <p>You're on a job, on the roof, or just slammed. It happens every day.</p>
+              </div>
+            </div>
+            <div class="demo-step">
+              <div class="demo-step-num">2</div>
+              <div>
+                <strong>System detects the missed call instantly.</strong>
+                <p>No app. No action needed from you. Fully automatic.</p>
+              </div>
+            </div>
+            <div class="demo-step">
+              <div class="demo-step-num">3</div>
+              <div>
+                <strong>Branded SMS fires in under 90 seconds.</strong>
+                <p>Sounds like you, not a bot. Keeps the lead warm before they call a competitor.</p>
+              </div>
+            </div>
+            <div class="demo-step">
+              <div class="demo-step-num">4</div>
+              <div>
+                <strong>Full conversation lands in your inbox.</strong>
+                <p>When you're free, you see the thread, follow up, and close the job.</p>
+              </div>
+            </div>
+          </div>
+          <div class="demo-stat-box">
+            <div class="demo-stat-num">9×</div>
+            <p>Leads contacted within 5 minutes are <strong>9× more likely to convert</strong> than those followed up an hour later. Our system responds in under 90 seconds — every time.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ========== HOW IT WORKS ========== -->
   <section class="section" id="how-it-works">
     <div class="container">
@@ -191,25 +260,61 @@
   <section class="section" id="pricing">
     <div class="container">
       <span class="section-tag">Simple Pricing</span>
-      <h2>One price. No games.</h2>
-      
-      <div class="pricing-card">
-        <div class="pricing-header">
-          <h3>Complete Lead Capture System</h3>
-          <p>Website + Automation + Lead Tracking</p>
+      <h2>No contracts. Cancel anytime.</h2>
+      <p class="section-intro">Results in 30 days or your money back. We only work with one contractor per service area.</p>
+
+      <div class="pricing-grid">
+
+        <div class="pricing-tier">
+          <div class="tier-name">Starter</div>
+          <p class="tier-desc">Everything you need to capture and respond to leads automatically.</p>
+          <div class="tier-price"><span class="tier-amount">$297</span><span class="tier-per">/mo</span></div>
+          <div class="tier-setup">+ $500 one-time setup</div>
+          <ul class="tier-features">
+            <li>Missed call text-back (&lt; 90 sec)</li>
+            <li>Mobile-friendly contractor website</li>
+            <li>Quote request form</li>
+            <li>2-way SMS inbox</li>
+            <li>Google Business Profile optimization</li>
+            <li>Monthly performance report</li>
+          </ul>
+          <a href="#contact" class="btn btn-tier">Get Started</a>
         </div>
-        <div class="pricing-body">
-          <div class="price-group">
-            <span class="price-amount orange">$500</span>
-            <span class="price-label">setup</span>
-          </div>
-          <span class="price-plus">+</span>
-          <div class="price-group">
-            <span class="price-amount">$150</span>
-            <span class="price-label">/month</span>
-          </div>
+
+        <div class="pricing-tier tier-popular">
+          <div class="tier-badge">⚡ Most Popular</div>
+          <div class="tier-name">Growth</div>
+          <p class="tier-desc">The full system. More leads, better reviews, more booked jobs.</p>
+          <div class="tier-price"><span class="tier-amount">$497</span><span class="tier-per">/mo</span></div>
+          <div class="tier-setup">+ $500 one-time setup</div>
+          <ul class="tier-features">
+            <li>Everything in Starter</li>
+            <li>Automated review requests</li>
+            <li>5-touch lead nurture sequence</li>
+            <li>Online booking widget</li>
+            <li>Real-time lead dashboard</li>
+            <li>Weekly GBP posts</li>
+            <li>Competitor ranking reports</li>
+          </ul>
+          <a href="#contact" class="btn btn-tier btn-tier-primary">Get Started</a>
         </div>
-        <a href="#contact" class="btn btn-primary">Get Started</a>
+
+        <div class="pricing-tier">
+          <div class="tier-name">Dominator</div>
+          <p class="tier-desc">For contractors ready to own their market and scale fast.</p>
+          <div class="tier-price"><span class="tier-amount">$797</span><span class="tier-per">/mo</span></div>
+          <div class="tier-setup">+ $997 one-time setup</div>
+          <ul class="tier-features">
+            <li>Everything in Growth</li>
+            <li>Google &amp; Meta Ads management</li>
+            <li>Dedicated account manager</li>
+            <li>Weekly strategy calls</li>
+            <li>Priority support</li>
+            <li>Full CRM + pipeline management</li>
+          </ul>
+          <a href="#contact" class="btn btn-tier">Get Started</a>
+        </div>
+
       </div>
 
       <div class="roi-box">
@@ -224,20 +329,83 @@
         </div>
         <table class="roi-table">
           <tr>
-            <td>Your average job value</td>
+            <td>Average HVAC job value</td>
             <td>$5,000+</td>
           </tr>
           <tr>
-            <td>Annual system cost (first year)</td>
-            <td>$2,300</td>
+            <td>Annual system cost (Growth plan)</td>
+            <td>$6,464</td>
           </tr>
           <tr>
             <td>Jobs needed to break even</td>
-            <td class="highlight">1 job</td>
+            <td class="highlight">2 jobs</td>
           </tr>
         </table>
-        <p class="roi-note">Most contractors only need <strong>one extra job per year</strong> for this system to pay for itself.</p>
+        <p class="roi-note">Most contractors recover the investment from <strong>missed calls they were already losing.</strong></p>
       </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIALS ========== -->
+  <section class="section section-navy" id="results">
+    <div class="container">
+      <span class="section-tag section-tag-light">Results</span>
+      <h2 class="text-white">Numbers Don't Lie</h2>
+      <p class="section-intro" style="color:rgba(255,255,255,0.7);">What Maryland contractors typically see within the first 90 days.</p>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-icon">⚡</div>
+          <div class="metric-val">&lt; 90s</div>
+          <div class="metric-label">Text-Back Speed</div>
+          <div class="metric-sub">Average auto-response time</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon">👥</div>
+          <div class="metric-val">3×</div>
+          <div class="metric-label">More Leads Captured</div>
+          <div class="metric-sub">vs. no automation</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon">⭐</div>
+          <div class="metric-val">47%</div>
+          <div class="metric-label">Review Request Rate</div>
+          <div class="metric-sub">Customers who leave a review</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon">📈</div>
+          <div class="metric-val">Top 3</div>
+          <div class="metric-label">Local Rankings</div>
+          <div class="metric-sub">Google Maps placement</div>
+        </div>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"We were losing at least 3–4 calls a week while my guys were on jobs. The text-back system alone booked us 6 new AC installs last month. That's over $40K we would have missed."</blockquote>
+          <div class="testimonial-author">
+            <div class="author-avatar">DK</div>
+            <div>
+              <div class="author-name">Dave K.</div>
+              <div class="author-company">Premier Air Solutions · Columbia, MD</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"I was skeptical about another marketing service but this felt different. Within the first week we had 3 booked tune-ups from the automated text. Setup was painless — they handled everything."</blockquote>
+          <div class="testimonial-author">
+            <div class="author-avatar">TR</div>
+            <div>
+              <div class="author-name">Tony R.</div>
+              <div class="author-company">BayState HVAC Services · Annapolis, MD</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p style="color:rgba(255,255,255,0.4);font-size:14px;margin-top:32px;">We only work with <span style="color:var(--orange);font-weight:600;">one contractor per service area</span> in Maryland — so your leads stay yours.</p>
     </div>
   </section>
 

@@ -128,6 +128,93 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   
+  // ========== MISSED CALL DEMO ==========
+  var demoRunning = false;
+
+  var demoConvo = [
+    { type: 'missed', time: '2:14 PM' },
+    { type: 'out', text: "Hey Sarah! This is Mike @ Cool Breeze HVAC 👋 Sorry I missed your call — I'm on a job right now. What can I help you with?", time: '2:14 PM', label: 'Sent automatically' },
+    { type: 'in',  text: "Hi! My AC stopped working this morning and it's supposed to be 94° tomorrow 😰 Do you have any openings?", time: '2:15 PM' },
+    { type: 'out', text: 'Absolutely — we have same-day and next-morning slots in your area. Can you confirm your zip code so I can check availability?', time: '2:15 PM', label: 'Sent automatically' },
+    { type: 'in',  text: '21210 — Federal Hill area', time: '2:16 PM' },
+    { type: 'out', text: "Perfect — we're in your area tomorrow at 8AM or 11AM. Which works better? I'll confirm the tech right now 🔧", time: '2:16 PM', label: 'Sent automatically' },
+    { type: 'in',  text: '8AM works!! You just saved my summer 😅', time: '2:17 PM' }
+  ];
+
+  var demoDelays = [500, 2200, 4400, 6600, 8600, 10600, 12800];
+  var demoTimers = [];
+
+  window.runDemo = function() {
+    if (demoRunning) return;
+    demoRunning = true;
+
+    var body = document.getElementById('smsBody');
+    var btn  = document.getElementById('demoBtn');
+    if (!body || !btn) return;
+
+    btn.textContent = '▶ Playing...';
+    btn.disabled = true;
+    body.innerHTML = '';
+
+    demoTimers.forEach(clearTimeout);
+    demoTimers = [];
+
+    demoConvo.forEach(function(item, i) {
+      var t = setTimeout(function() {
+        if (item.type === 'out') {
+          // show typing dots first
+          var dots = document.createElement('div');
+          dots.className = 'typing-dots';
+          dots.innerHTML = '<span></span><span></span><span></span>';
+          body.appendChild(dots);
+          body.scrollTop = body.scrollHeight;
+
+          var t2 = setTimeout(function() {
+            body.removeChild(dots);
+            appendBubble(body, item);
+            body.scrollTop = body.scrollHeight;
+          }, 700);
+          demoTimers.push(t2);
+        } else {
+          appendBubble(body, item);
+          body.scrollTop = body.scrollHeight;
+        }
+      }, demoDelays[i]);
+      demoTimers.push(t);
+    });
+
+    var done = setTimeout(function() {
+      demoRunning = false;
+      btn.textContent = '▶ Trigger Demo';
+      btn.disabled = false;
+    }, demoDelays[demoConvo.length - 1] + 1500);
+    demoTimers.push(done);
+  };
+
+  function appendBubble(body, item) {
+    if (item.type === 'missed') {
+      var el = document.createElement('div');
+      el.className = 'sms-missed';
+      el.innerHTML = '<span>📵 Missed Call — ' + item.time + '</span>';
+      body.appendChild(el);
+      return;
+    }
+    var wrap = document.createElement('div');
+    wrap.className = 'sms-bubble ' + (item.type === 'out' ? 'out' : 'in');
+    var inner = document.createElement('div');
+    inner.className = 'bubble-inner';
+    var text = document.createElement('div');
+    text.className = 'bubble-text';
+    text.textContent = item.text;
+    var time = document.createElement('div');
+    time.className = 'bubble-time';
+    time.textContent = item.time + (item.label ? ' · ' + item.label : '');
+    inner.appendChild(text);
+    inner.appendChild(time);
+    wrap.appendChild(inner);
+    body.appendChild(wrap);
+  }
+
   // ========== SCROLL ANIMATIONS ==========
   const observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
