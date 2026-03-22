@@ -305,6 +305,7 @@
           <div class="tier-price"><span class="tier-amount">$797</span><span class="tier-per">/mo</span></div>
           <div class="tier-setup">+ $997 one-time setup</div>
           <ul class="tier-features">
+            <li>AI Voice Agent (24/7 call answering)</li>
             <li>Everything in Growth</li>
             <li>Google &amp; Meta Ads management</li>
             <li>Dedicated account manager</li>
@@ -533,20 +534,8 @@
           <input type="text" id="name" name="name" required placeholder="John Smith">
         </div>
         <div class="form-group">
-          <label for="business">Business Name</label>
-          <input type="text" id="business" name="business" required placeholder="Smith Contracting">
-        </div>
-        <div class="form-group">
           <label for="phone">Phone Number</label>
           <input type="tel" id="phone" name="phone" required placeholder="(301) 555-0123">
-        </div>
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" required placeholder="john@smithcontracting.com">
-        </div>
-        <div class="form-group">
-          <label for="website">Current Website (if any)</label>
-          <input type="url" id="website" name="website" placeholder="https://smithcontracting.com">
         </div>
         <div class="form-group">
           <label for="service">Service Type</label>
@@ -564,8 +553,13 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="message">Anything else we should know?</label>
-          <textarea id="message" name="message" rows="4" placeholder="Tell us about your business..."></textarea>
+          <label for="besttime">Best Time to Reach You</label>
+          <select id="besttime" name="besttime" required>
+            <option value="">Select a time...</option>
+            <option value="Morning (8am-12pm)">Morning (8am–12pm)</option>
+            <option value="Afternoon (12pm-5pm)">Afternoon (12pm–5pm)</option>
+            <option value="Evening (5pm-8pm)">Evening (5pm–8pm)</option>
+          </select>
         </div>
         
         <button type="submit" class="btn btn-primary btn-lg btn-full" id="submitBtn">

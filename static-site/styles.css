@@ -782,7 +782,7 @@ button {
 
 .form-group label {
   display: block;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -938,7 +938,7 @@ button {
 }
 
 .sms-sub {
-  font-size: 11px;
+  font-size: 13px;
   color: #8e8e93;
   margin-top: 2px;
 }
@@ -959,7 +959,7 @@ button {
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-size: 12px;
+  font-size: 14px;
   color: #8e8e93;
   padding: 16px;
   font-family: var(--font-body);
@@ -973,7 +973,7 @@ button {
   display: inline-block;
   background: #fff0f0;
   color: #dc2626;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
   padding: 4px 12px;
   border-radius: 20px;
@@ -995,7 +995,7 @@ button {
 .bubble-text {
   padding: 8px 12px;
   border-radius: 18px;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.4;
   font-family: var(--font-body);
 }
@@ -1013,7 +1013,7 @@ button {
 }
 
 .bubble-time {
-  font-size: 10px;
+  font-size: 12px;
   color: #8e8e93;
   margin-top: 3px;
   font-family: var(--font-body);
@@ -1174,7 +1174,7 @@ button {
   background: var(--orange);
   color: var(--white);
   font-family: var(--font-heading);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -1224,7 +1224,7 @@ button {
 .tier-popular .tier-per { color: rgba(255,255,255,0.6); }
 
 .tier-setup {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--gray-600);
   margin-bottom: 20px;
 }
@@ -1244,7 +1244,7 @@ button {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--gray-800);
   line-height: 1.4;
 }
@@ -1325,8 +1325,8 @@ button {
 }
 
 .metric-sub {
-  font-size: 12px;
-  color: rgba(255,255,255,0.45);
+  font-size: 14px;
+  color: rgba(255,255,255,0.75);
 }
 
 .testimonials-grid {
@@ -1393,7 +1393,7 @@ button {
 }
 
 .author-company {
-  font-size: 13px;
+  font-size: 14px;
   color: rgba(255,255,255,0.5);
 }
 
@@ -1426,7 +1426,7 @@ button {
 }
 
 .footer-brand p {
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.7);
   font-size: 14px;
   margin-top: 4px;
 }
@@ -1438,7 +1438,7 @@ button {
 
 .footer-links a {
   font-size: 14px;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.7);
   transition: color 0.2s;
 }
 
@@ -1454,6 +1454,6 @@ button {
 }
 
 .footer-bottom p {
-  font-size: 13px;
+  font-size: 14px;
   color: rgba(255,255,255,0.3);
 }
