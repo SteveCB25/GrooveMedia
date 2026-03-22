@@ -41,8 +41,22 @@
 - Vapi Phone: +1 (443) 508-9490
 - Make.com: Connected, 10K ops/mo plan
 - GitHub: SteveCB25/GrooveMedia
+### Template / Demo Account (Contractor Lead System)
+- GHL Location ID: miqSoOGggesFENOrFT7m
+- GHL API Key: pit-a062c3d5-e828-41aa-a760-cc2febb28936
+- GHL Calendar ID (Free Estimate / Quote Call): dZhAnPRHbas4jlJgsOUx
+- Make.com Webhook: https://hook.us2.make.com/8b3s7lbkdf2ikqhsdljsn4yfdg4cf6mf
+- AI Voice Agent: Aria | Assistant ID: 8ea20c67-af86-42aa-8f73-c6a5bc351336 | Phone: +1 (443) 508-9490
+
+### Groove Media Account (Live Operations)
+- GHL Location ID: GSk4D9ffTVB1SOqwLQcV
+- GHL API Key: pit-f7aaf747-e865-4697-9ba3-54dbcee4f449
+- GHL Calendar ID (Contractor Consultation): 1d2cfTRX4e1LPzM4JAxI
+- Booking Link: https://link.msgsndr.com/widget/bookings/groove-automation
+- AI Voice Agent: Alex | Assistant ID: 632135c4-9083-44c7-b251-3754e42b929a | Phone: +1 (240) 221-6089
+- Make.com Webhook: https://hook.us2.make.com/novg33vq1qswqenp5m28o74ql1pc9heq
 
 ## To-Do (Pending)
-- [ ] GHL API access (waiting for snapshot deployment confirmation)
-- [ ] Calendar integration
+- [x] GHL API access — connected March 22, 2026
+- [ ] Calendar integration — calendar created, needs Google Calendar sync + booking workflow
 - [ ] Sign first client (3 warm leads available NOW)

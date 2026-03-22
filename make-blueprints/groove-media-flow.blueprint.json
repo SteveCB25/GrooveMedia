@@ -1,0 +1,205 @@
+{
+  "name": "Groove Media Flow",
+  "flow": [
+    {
+      "id": 1,
+      "module": "gateway:CustomWebHook",
+      "version": 1,
+      "parameters": {
+        "hook": 0,
+        "maxResults": 1
+      },
+      "mapper": {},
+      "metadata": {
+        "designer": { "x": 0, "y": 150 },
+        "restore": {
+          "parameters": {
+            "hook": {
+              "data": { "editable": "true" },
+              "label": "Groove Media Alex Calls"
+            }
+          }
+        },
+        "parameters": [
+          { "name": "hook", "type": "hook:gateway-webhook", "label": "Webhook", "required": true },
+          { "name": "maxResults", "type": "number", "label": "Maximum number of results" }
+        ]
+      }
+    },
+    {
+      "id": 37,
+      "module": "regexp:Parser",
+      "version": 1,
+      "parameters": {
+        "global": false,
+        "pattern": "^([A-Za-z]+)",
+        "multiline": false,
+        "sensitive": false,
+        "singleline": false,
+        "continueWhenNoRes": true
+      },
+      "mapper": {
+        "text": "{{1.message.summary}}"
+      },
+      "metadata": {
+        "designer": { "x": 300, "y": 150 },
+        "restore": {},
+        "parameters": [
+          { "name": "pattern", "type": "text", "label": "Pattern", "required": true },
+          { "name": "global", "type": "boolean", "label": "Global match", "required": true },
+          { "name": "sensitive", "type": "boolean", "label": "Case sensitive", "required": true },
+          { "name": "multiline", "type": "boolean", "label": "Multiline", "required": true },
+          { "name": "singleline", "type": "boolean", "label": "Singleline", "required": true },
+          { "name": "continueWhenNoRes", "type": "boolean", "label": "Continue the execution of the route even if the module finds no matches", "required": true }
+        ],
+        "expect": [
+          { "name": "text", "type": "text", "label": "Text" }
+        ],
+        "interface": [
+          { "name": "$1", "type": "text", "label": "$1" }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "module": "highlevel:createAContact",
+      "version": 1,
+      "parameters": {
+        "IMTCONN": 0
+      },
+      "mapper": {
+        "dnd": false,
+        "phone": "{{1.message.customer.number}}",
+        "address": {},
+        "lastName": "Lead",
+        "firstName": "{{37.$1}}",
+        "customField": {
+          "hXpzCcqXzgBWHY4YDcBx": "{{1.message.summary}}"
+        }
+      },
+      "routes": [
+        {
+          "flow": [
+            {
+              "id": 10,
+              "module": "highlevel:searchContacts",
+              "version": 1,
+              "parameters": {
+                "IMTCONN": 0
+              },
+              "mapper": {
+                "phone": "{{1.message.customer.number}}"
+              },
+              "metadata": {
+                "designer": { "x": 600, "y": 350 },
+                "restore": {
+                  "parameters": {
+                    "IMTCONN": {
+                      "data": { "scoped": "true", "connection": "highlevel3" },
+                      "label": "Groove Media GHL"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "id": 11,
+              "module": "highlevel:updateAContact",
+              "version": 1,
+              "parameters": {
+                "IMTCONN": 0
+              },
+              "mapper": {
+                "contactId": "{{10.contacts[].id}}",
+                "firstName": "{{37.$1}}",
+                "lastName": "Lead",
+                "customField": {
+                  "hXpzCcqXzgBWHY4YDcBx": "{{1.message.summary}}"
+                }
+              },
+              "metadata": {
+                "designer": { "x": 900, "y": 350 },
+                "restore": {
+                  "parameters": {
+                    "IMTCONN": {
+                      "data": { "scoped": "true", "connection": "highlevel3" },
+                      "label": "Groove Media GHL"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "id": 12,
+              "module": "builtin:BasicFeeder",
+              "version": 1,
+              "parameters": {},
+              "mapper": {},
+              "metadata": {
+                "designer": { "x": 1200, "y": 350 }
+              }
+            }
+          ],
+          "label": "Error handler"
+        }
+      ],
+      "metadata": {
+        "designer": { "x": 600, "y": 150 },
+        "restore": {
+          "parameters": {
+            "IMTCONN": {
+              "data": { "scoped": "true", "connection": "highlevel3" },
+              "label": "Groove Media GHL"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 3,
+      "module": "highlevel:createAnOpportunity",
+      "version": 1,
+      "parameters": {
+        "IMTCONN": 0
+      },
+      "mapper": {
+        "name": "AI Voice Lead",
+        "status": "open",
+        "stageId": "a3599b9a-229d-4898-a0a8-3fba4930ccfb",
+        "pipelineId": "BwvvIEEP26r0yIAMo0GB",
+        "contactId": "{{2.id}}"
+      },
+      "metadata": {
+        "designer": { "x": 900, "y": 150 },
+        "restore": {
+          "parameters": {
+            "IMTCONN": {
+              "data": { "scoped": "true", "connection": "highlevel3" },
+              "label": "Groove Media GHL"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "instant": true,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "autoCommitTriggerLast": true,
+      "sequential": false,
+      "slots": null,
+      "confidential": false,
+      "dataloss": false,
+      "dlq": false,
+      "freshVariables": false
+    },
+    "designer": {
+      "orphans": []
+    },
+    "zone": "us2.make.com"
+  }
+}
