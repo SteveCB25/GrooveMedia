@@ -861,6 +861,11 @@ button {
   text-decoration: underline;
 }
 
+.ghl-form-wrapper {
+  width: 100%;
+  min-height: 627px;
+}
+
 .form-note {
   text-align: center;
   font-size: 14px;
