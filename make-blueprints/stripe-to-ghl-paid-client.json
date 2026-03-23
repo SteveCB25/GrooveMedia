@@ -1,0 +1,126 @@
+{
+  "name": "Stripe Payment → GHL Paid Client",
+  "flow": [
+    {
+      "id": 1,
+      "module": "gateway:CustomWebHook",
+      "version": 1,
+      "parameters": {
+        "hook": "REPLACE_WITH_WEBHOOK_HOOK_ID",
+        "maxResults": 1
+      },
+      "mapper": {},
+      "metadata": {
+        "designer": { "x": 0, "y": 0 },
+        "restore": {
+          "parameters": {
+            "hook": { "label": "Stripe — Paid Client Webhook" }
+          }
+        }
+      }
+    },
+    {
+      "id": 2,
+      "module": "builtin:BasicFeeder",
+      "version": 1,
+      "parameters": {},
+      "filter": {
+        "name": "Checkout Completed Only",
+        "conditions": [
+          [
+            {
+              "a": "{{1.type}}",
+              "b": "checkout.session.completed",
+              "o": "text:equal"
+            }
+          ]
+        ]
+      },
+      "mapper": {
+        "array": "{{emptyarray}}"
+      },
+      "metadata": {
+        "designer": { "x": 300, "y": 0 }
+      }
+    },
+    {
+      "id": 3,
+      "module": "regexp:Parser",
+      "version": 1,
+      "parameters": {
+        "pattern": "^(\\S+)",
+        "flags": "",
+        "global": false
+      },
+      "mapper": {
+        "text": "{{1.data.object.customer_details.name}}"
+      },
+      "metadata": {
+        "designer": { "x": 600, "y": 0 }
+      }
+    },
+    {
+      "id": 4,
+      "module": "GHL:ActionCreateContact",
+      "version": 1,
+      "parameters": {
+        "Connection": "REPLACE_WITH_GHL_GROOVE_MEDIA_CONNECTION"
+      },
+      "mapper": {
+        "firstName": "{{3.$1}}",
+        "lastName": "{{replace(1.data.object.customer_details.name; 3.$1 + \" \"; \"\")}}",
+        "email": "{{1.data.object.customer_details.email}}",
+        "phone": "{{1.data.object.customer_details.phone}}",
+        "tags": ["paid-client", "onboarding-pending"],
+        "source": "stripe-payment"
+      },
+      "metadata": {
+        "designer": { "x": 900, "y": 0 },
+        "restore": {
+          "parameters": {
+            "Connection": { "label": "Groove Media — GHL" }
+          }
+        }
+      }
+    },
+    {
+      "id": 5,
+      "module": "GHL:ActionCreateOpportunity",
+      "version": 1,
+      "parameters": {
+        "Connection": "REPLACE_WITH_GHL_GROOVE_MEDIA_CONNECTION"
+      },
+      "mapper": {
+        "pipelineId": "BwvvIEEP26r0yIAMo0GB",
+        "stageId": "REPLACE_WITH_PAID_CLIENT_STAGE_ID",
+        "contactId": "{{4.id}}",
+        "name": "{{1.data.object.customer_details.name}}",
+        "status": "open",
+        "monetaryValue": "{{1.data.object.amount_total / 100}}"
+      },
+      "metadata": {
+        "designer": { "x": 1200, "y": 0 }
+      }
+    }
+  ],
+  "metadata": {
+    "instant": true,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "autoCommitTriggerLast": true,
+      "sequential": false,
+      "slots": null,
+      "confidential": false,
+      "dataloss": false,
+      "dlq": false,
+      "freshVariables": false
+    },
+    "designer": {
+      "orphans": []
+    },
+    "zone": "us2.make.com"
+  }
+}
