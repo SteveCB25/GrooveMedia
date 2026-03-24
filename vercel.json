@@ -4,6 +4,9 @@
   "installCommand": "yarn install",
   "framework": null,
   "rewrites": [
+    { "source": "/onboarding", "destination": "/onboarding.html" },
+    { "source": "/privacy-policy", "destination": "/privacy-policy.html" },
+    { "source": "/terms-of-service", "destination": "/terms-of-service.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
