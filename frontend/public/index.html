@@ -19,6 +19,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .lang-toggle { display:flex; align-items:center; gap:4px; background:#f1f5f9; border:none; border-radius:999px; padding:4px 12px; cursor:pointer; font-size:13px; font-weight:600; color:#64748b; }
+    .lang-toggle span.active { color:#2563eb; }
+  </style>
   
   <!-- Facebook Pixel -->
   <script>
@@ -44,11 +48,16 @@
     <div class="container header-inner">
       <a href="#" class="logo">The Groove Media</a>
       <nav class="nav" id="nav">
-        <a href="#how-it-works">How It Works</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact" class="nav-cta">Free Website Check</a>
+        <a href="#how-it-works" data-en="How It Works" data-es="Cómo Funciona">How It Works</a>
+        <a href="#pricing" data-en="Pricing" data-es="Precios">Pricing</a>
+        <a href="#faq" data-en="FAQ" data-es="Preguntas">FAQ</a>
+        <a href="#contact" class="nav-cta" data-en="Free Website Check" data-es="Revisa Tu Sitio Gratis">Free Website Check</a>
       </nav>
+      <button class="lang-toggle" id="langToggle" onclick="toggleLang()">
+        <span id="langEN" class="active">EN</span>
+        <span style="opacity:0.3">|</span>
+        <span id="langES">ES</span>
+      </button>
       <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
         <span></span>
         <span></span>
@@ -62,16 +71,16 @@
     <div class="container">
       <div class="hero-grid">
         <div class="hero-content">
-          <span class="badge">Serving the DMV area</span>
-          <h1>Turn missed calls into <span class="text-orange">booked jobs.</span></h1>
-          <p class="hero-sub">We build your website, capture every lead, and follow up automatically — so you can stay on the job while your phone works for you.</p>
-          <a href="#contact" class="btn btn-primary btn-lg">Get a Free Website Check</a>
+          <span class="badge" data-en="Serving the DMV area" data-es="Sirviendo el área DMV">Serving the DMV area</span>
+          <h1 data-en="Turn missed calls into <span class='text-orange'>booked jobs.</span>" data-es="Convierte llamadas perdidas en <span class='text-orange'>trabajos confirmados.</span>">Turn missed calls into <span class="text-orange">booked jobs.</span></h1>
+          <p class="hero-sub" data-en="We build your website, capture every lead, and follow up automatically — so you can stay on the job while your phone works for you." data-es="Construimos tu sitio web, capturamos cada cliente potencial y hacemos seguimiento automáticamente — para que puedas seguir trabajando mientras tu teléfono trabaja por ti.">We build your website, capture every lead, and follow up automatically — so you can stay on the job while your phone works for you.</p>
+          <a href="#contact" class="btn btn-primary btn-lg" data-en="Get a Free Website Check" data-es="Revisa Tu Sitio Gratis">Get a Free Website Check</a>
           <div class="hero-trust">
-            <span>Website included</span>
+            <span data-en="Website included" data-es="Sitio web incluido">Website included</span>
             <span class="sep">•</span>
-            <span>Live in 7 days</span>
+            <span data-en="Live in 7 days" data-es="Activo en 7 días">Live in 7 days</span>
             <span class="sep">•</span>
-            <span>No contracts</span>
+            <span data-en="No contracts" data-es="Sin contratos">No contracts</span>
           </div>
         </div>
         <div class="hero-image">
@@ -84,9 +93,9 @@
   <!-- ========== PROBLEM ========== -->
   <section class="section section-gray" id="problem">
     <div class="container container-narrow">
-      <span class="section-tag">The Leaky Bucket</span>
-      <h2>You aren't losing jobs to competitors—you're losing them to slow follow-up.</h2>
-      <p class="section-intro">When a homeowner needs a quote, they reach out to 3-5 contractors. The first to respond usually gets the job.</p>
+      <span class="section-tag" data-en="The Leaky Bucket" data-es="El Balde con Hoyos">The Leaky Bucket</span>
+      <h2 data-en="You aren't losing jobs to competitors—you're losing them to slow follow-up." data-es="No pierdes trabajos ante la competencia — los pierdes por responder tarde.">You aren't losing jobs to competitors—you're losing them to slow follow-up.</h2>
+      <p class="section-intro" data-en="When a homeowner needs a quote, they reach out to 3-5 contractors. The first to respond usually gets the job." data-es="Cuando un dueño de casa necesita un presupuesto, contacta a 3-5 contratistas. El primero en responder generalmente se lleva el trabajo.">When a homeowner needs a quote, they reach out to 3-5 contractors. The first to respond usually gets the job.</p>
       
       <div class="problem-grid">
         <div class="problem-card">
@@ -96,7 +105,7 @@
               <line x1="1" y1="1" x2="23" y2="23"/>
             </svg>
           </div>
-          <p>Missed calls while you're on a job</p>
+          <p data-en="Missed calls while you're on a job" data-es="Llamadas perdidas mientras trabajas">Missed calls while you're on a job</p>
         </div>
         <div class="problem-card">
           <div class="problem-icon">
@@ -105,7 +114,7 @@
               <line x1="9" y1="10" x2="15" y2="10"/>
             </svg>
           </div>
-          <p>Slow text replies that lose the customer</p>
+          <p data-en="Slow text replies that lose the customer" data-es="Mensajes lentos que pierden al cliente">Slow text replies that lose the customer</p>
         </div>
         <div class="problem-card">
           <div class="problem-icon">
@@ -115,7 +124,7 @@
               <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
             </svg>
           </div>
-          <p>An outdated website (or no website at all)</p>
+          <p data-en="An outdated website (or no website at all)" data-es="Un sitio web desactualizado (o sin sitio)">An outdated website (or no website at all)</p>
         </div>
         <div class="problem-card">
           <div class="problem-icon">
@@ -123,7 +132,7 @@
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
             </svg>
           </div>
-          <p>Zero reviews to build trust</p>
+          <p data-en="Zero reviews to build trust" data-es="Sin reseñas para generar confianza">Zero reviews to build trust</p>
         </div>
       </div>
     </div>
@@ -201,29 +210,29 @@
   <!-- ========== HOW IT WORKS ========== -->
   <section class="section" id="how-it-works">
     <div class="container">
-      <span class="section-tag">The 3-Step Solution</span>
-      <h2>Simple. No Gimmicks.</h2>
-      
+      <span class="section-tag" data-en="The 3-Step Solution" data-es="La Solución en 3 Pasos">The 3-Step Solution</span>
+      <h2 data-en="Simple. No Gimmicks." data-es="Simple. Sin Trucos.">Simple. No Gimmicks.</h2>
+
       <div class="steps">
         <div class="step">
           <div class="step-num">1</div>
           <div class="step-content">
-            <h3>We build your website</h3>
-            <p>No website? We build one. Bad website? We fix it. Either way, you get a fast, mobile-friendly site that captures quote requests and looks professional — included in your setup.</p>
+            <h3 data-en="We build your website" data-es="Construimos tu sitio web">We build your website</h3>
+            <p data-en="No website? We build one. Bad website? We fix it. Either way, you get a fast, mobile-friendly site that captures quote requests and looks professional — included in your setup." data-es="¿Sin sitio web? Lo construimos. ¿Sitio malo? Lo arreglamos. De cualquier manera, obtienes un sitio rápido y profesional — incluido en tu configuración.">No website? We build one. Bad website? We fix it. Either way, you get a fast, mobile-friendly site that captures quote requests and looks professional — included in your setup.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">2</div>
           <div class="step-content">
-            <h3>Capture every lead</h3>
-            <p>When a customer messages you, they get an instant text response so they stop calling other guys. You follow up when you're ready.</p>
+            <h3 data-en="Capture every lead" data-es="Captura cada cliente potencial">Capture every lead</h3>
+            <p data-en="When a customer messages you, they get an instant text response so they stop calling other guys. You follow up when you're ready." data-es="Cuando un cliente te escribe, recibe una respuesta inmediata por texto para que no llame a otro contratista. Tú haces seguimiento cuando estés listo.">When a customer messages you, they get an instant text response so they stop calling other guys. You follow up when you're ready.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">3</div>
           <div class="step-content">
-            <h3>Track and win more jobs</h3>
-            <p>We organize your leads so you can follow up fast and get 5-star reviews automatically after every finished job.</p>
+            <h3 data-en="Track and win more jobs" data-es="Organiza y gana más trabajos">Track and win more jobs</h3>
+            <p data-en="We organize your leads so you can follow up fast and get 5-star reviews automatically after every finished job." data-es="Organizamos tus clientes para que puedas hacer seguimiento rápido y recibir reseñas de 5 estrellas automáticamente después de cada trabajo.">We organize your leads so you can follow up fast and get 5-star reviews automatically after every finished job.</p>
           </div>
         </div>
       </div>
@@ -304,18 +313,18 @@
   <!-- ========== PRICING ========== -->
   <section class="section" id="pricing">
     <div class="container">
-      <span class="section-tag">Simple Pricing</span>
-      <h2>Less than $5 a day. One job pays for the year.</h2>
-      <p class="section-intro">Contractors miss 62% of calls. One recovered lead per month covers the entire system — the rest is pure profit. No contracts. Cancel anytime.</p>
+      <span class="section-tag" data-en="Simple Pricing" data-es="Precios Simples">Simple Pricing</span>
+      <h2 data-en="Less than $5 a day. One job pays for the year." data-es="Un trabajo recuperado paga todo el año.">Less than $5 a day. One job pays for the year.</h2>
+      <p class="section-intro" data-en="Contractors miss 62% of calls. One recovered lead per month covers the entire system — the rest is pure profit. No contracts. Cancel anytime." data-es="Los contratistas pierden el 62% de sus llamadas. Un trabajo extra al mes cubre todo el sistema — el resto es ganancia pura. Sin contratos. Cancela cuando quieras.">Contractors miss 62% of calls. One recovered lead per month covers the entire system — the rest is pure profit. No contracts. Cancel anytime.</p>
 
       <div class="pricing-grid">
 
         <div class="pricing-tier">
           <div class="tier-name">Starter</div>
-          <p class="tier-desc">Everything you need to capture and respond to leads automatically.</p>
+          <p class="tier-desc" data-en="Everything you need to capture and respond to leads automatically." data-es="Todo lo que necesitas para capturar y responder clientes automáticamente.">Everything you need to capture and respond to leads automatically.</p>
           <div class="tier-price"><span class="tier-amount">$150</span><span class="tier-per">/mo</span></div>
-          <div class="tier-setup">+ $250 setup (website build included)</div>
-          <div class="tier-roi">💰 1 extra job/mo = paid for</div>
+          <div class="tier-setup" data-en="+ $250 setup (website build included)" data-es="+ $250 configuración (sitio web incluido)">+ $250 setup (website build included)</div>
+          <div class="tier-roi" data-en="💰 1 extra job/mo = paid for" data-es="💰 1 trabajo extra/mes = cubierto">💰 1 extra job/mo = paid for</div>
           <ul class="tier-features">
             <li>✅ Professional website — built for you</li>
             <li>Missed call text-back (&lt; 90 sec)</li>
@@ -324,16 +333,16 @@
             <li>Google Business Profile optimization</li>
             <li>Monthly performance report</li>
           </ul>
-          <a href="https://buy.stripe.com/14A8wR3SI0mI9AQ0eyfw403" target="_blank" class="btn btn-tier">Get Started</a>
+          <a href="https://buy.stripe.com/14A8wR3SI0mI9AQ0eyfw403" target="_blank" class="btn btn-tier" data-en="Get Started" data-es="Comenzar">Get Started</a>
         </div>
 
         <div class="pricing-tier tier-popular">
           <div class="tier-badge">⚡ Most Popular</div>
           <div class="tier-name">Growth</div>
-          <p class="tier-desc">The full system. More leads, better reviews, more booked jobs.</p>
+          <p class="tier-desc" data-en="The full system. More leads, better reviews, more booked jobs." data-es="El sistema completo. Más clientes, mejores reseñas, más trabajos.">The full system. More leads, better reviews, more booked jobs.</p>
           <div class="tier-price"><span class="tier-amount">$350</span><span class="tier-per">/mo</span></div>
-          <div class="tier-setup">+ $500 setup (website build included)</div>
-          <div class="tier-roi">💰 1 extra job/mo = more than paid for</div>
+          <div class="tier-setup" data-en="+ $500 setup (website build included)" data-es="+ $500 configuración (sitio web incluido)">+ $500 setup (website build included)</div>
+          <div class="tier-roi" data-en="💰 1 extra job/mo = more than paid for" data-es="💰 1 trabajo extra/mes = más que cubierto">💰 1 extra job/mo = more than paid for</div>
           <ul class="tier-features">
             <li>Everything in Starter</li>
             <li>Automated review requests</li>
@@ -343,15 +352,15 @@
             <li>Weekly GBP posts</li>
             <li>Competitor ranking reports</li>
           </ul>
-          <a href="https://buy.stripe.com/5kQ6oJ0Gw2uQbIY3qKfw404" target="_blank" class="btn btn-tier btn-tier-primary">Get Started</a>
+          <a href="https://buy.stripe.com/5kQ6oJ0Gw2uQbIY3qKfw404" target="_blank" class="btn btn-tier btn-tier-primary" data-en="Get Started" data-es="Comenzar">Get Started</a>
         </div>
 
         <div class="pricing-tier">
           <div class="tier-name">Dominator</div>
-          <p class="tier-desc">For contractors ready to own their market and scale fast.</p>
+          <p class="tier-desc" data-en="For contractors ready to own their market and scale fast." data-es="Para contratistas listos para dominar su mercado.">For contractors ready to own their market and scale fast.</p>
           <div class="tier-price"><span class="tier-amount">$500</span><span class="tier-per">/mo</span></div>
-          <div class="tier-setup">+ $500 setup (website build included)</div>
-          <div class="tier-roi">💰 1 extra job covers 2+ months</div>
+          <div class="tier-setup" data-en="+ $500 setup (website build included)" data-es="+ $500 configuración (sitio web incluido)">+ $500 setup (website build included)</div>
+          <div class="tier-roi" data-en="💰 1 extra job covers 2+ months" data-es="💰 1 trabajo extra cubre 2+ meses">💰 1 extra job covers 2+ months</div>
           <ul class="tier-features">
             <li>AI Voice Agent (24/7 call answering)</li>
             <li>Everything in Growth</li>
@@ -361,7 +370,7 @@
             <li>Priority support</li>
             <li>Full CRM + pipeline management</li>
           </ul>
-          <a href="https://buy.stripe.com/3cI6oJgFu2uQ9AQf9sfw405" target="_blank" class="btn btn-tier">Get Started</a>
+          <a href="https://buy.stripe.com/3cI6oJgFu2uQ9AQf9sfw405" target="_blank" class="btn btn-tier" data-en="Get Started" data-es="Comenzar">Get Started</a>
         </div>
 
       </div>
@@ -537,9 +546,9 @@
   <!-- ========== FAQ ========== -->
   <section class="section section-gray" id="faq">
     <div class="container">
-      <span class="section-tag">FAQ</span>
-      <h2>Questions we hear all the time</h2>
-      <p class="section-intro">Straight answers. No sales spin.</p>
+      <span class="section-tag" data-en="FAQ" data-es="Preguntas Frecuentes">FAQ</span>
+      <h2 data-en="Questions we hear all the time" data-es="Preguntas que escuchamos todo el tiempo">Questions we hear all the time</h2>
+      <p class="section-intro" data-en="Straight answers. No sales spin." data-es="Respuestas directas. Sin rodeos.">Straight answers. No sales spin.</p>
 
       <div class="faq-list">
         <div class="faq-item">
@@ -639,9 +648,9 @@
   <!-- ========== CONTACT ========== -->
   <section class="section" id="contact">
     <div class="container">
-      <span class="section-tag">Get Started</span>
-      <h2>Request My Free Website Check</h2>
-      <p class="section-intro">We'll review your current setup and show you what you're missing.</p>
+      <span class="section-tag" data-en="Get Started" data-es="Empezar">Get Started</span>
+      <h2 data-en="Request My Free Website Check" data-es="Solicita Tu Revisión Gratuita del Sitio Web">Request My Free Website Check</h2>
+      <p class="section-intro" data-en="We'll review your current setup and show you what you're missing." data-es="Revisaremos tu configuración actual y te mostraremos lo que te está faltando.">We'll review your current setup and show you what you're missing.</p>
       
       <div class="ghl-form-wrapper">
         <iframe
@@ -697,5 +706,24 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+function toggleLang() {
+  const isES = document.documentElement.lang === 'es';
+  const newLang = isES ? 'en' : 'es';
+  document.documentElement.lang = newLang;
+  document.getElementById('langEN').classList.toggle('active', newLang === 'en');
+  document.getElementById('langES').classList.toggle('active', newLang === 'es');
+  document.querySelectorAll('[data-en]').forEach(el => {
+    el.innerHTML = el.getAttribute('data-' + newLang);
+  });
+  localStorage.setItem('groove-lang', newLang);
+}
+
+// On page load, apply saved language
+(function() {
+  const saved = localStorage.getItem('groove-lang');
+  if (saved === 'es') toggleLang();
+})();
+  </script>
 </body>
 </html>
