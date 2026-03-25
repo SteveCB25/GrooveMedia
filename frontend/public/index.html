@@ -44,6 +44,25 @@
     .vis-stat-num { font-family: 'Barlow Condensed', sans-serif; font-size: 2.5rem; font-weight: 800; color: #f97316; margin-bottom: 8px; }
     .vis-stat-label { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.5; }
     @media (max-width: 600px) { .visibility-stats { grid-template-columns: 1fr; } .map-pack-demo { margin: 32px 0 32px; } }
+
+    /* Comparison Table */
+    .comparison-table { border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; margin-top: 48px; }
+    .comparison-header { display: grid; grid-template-columns: 1fr 1fr 1fr; background: #0f172a; }
+    .comp-col-label { padding: 16px 20px; }
+    .comp-col { padding: 16px 20px; font-size: 14px; font-weight: 700; text-align: center; }
+    .comp-col-bad { background: rgba(239,68,68,0.15); color: #fca5a5; }
+    .comp-col-good { background: rgba(34,197,94,0.15); color: #86efac; }
+    .comparison-header .comp-col-bad { color: #fca5a5; }
+    .comparison-header .comp-col-good { color: #86efac; }
+    .comparison-row { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid #f1f5f9; }
+    .comparison-row:nth-child(even) { background: #f8fafc; }
+    .comp-row-label { padding: 14px 20px; font-size: 14px; font-weight: 600; color: #374151; display: flex; align-items: center; }
+    .comparison-row .comp-col-bad { background: #fff5f5; color: #ef4444; font-size: 14px; font-weight: 500; display: flex; align-items: center; justify-content: center; text-align: center; }
+    .comparison-row .comp-col-good { background: #f0fdf4; color: #16a34a; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; text-align: center; }
+    @media (max-width: 600px) {
+      .comparison-header, .comparison-row { grid-template-columns: 1fr 1fr; }
+      .comp-col-label, .comp-row-label { display: none; }
+    }
   </style>
   
   <!-- Facebook Pixel -->
@@ -179,6 +198,53 @@
           <div class="vis-stat-num">$0</div>
           <div class="vis-stat-label" data-en="Google Business Profile costs nothing — most contractors just set it up wrong" data-es="Google Business Profile no cuesta nada — la mayoría de contratistas solo lo configuran mal">Google Business Profile costs nothing — most contractors just set it up wrong</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== THUMBTACK COMPARISON ========== -->
+  <section class="section section-gray" id="comparison">
+    <div class="container container-narrow">
+      <span class="section-tag" data-en="Stop Paying Per Lead" data-es="Deja de Pagar por Cada Cliente">Stop Paying Per Lead</span>
+      <h2 data-en="Thumbtack charges you $20–$150 per lead. Google sends them for free." data-es="Thumbtack te cobra $20–$150 por cliente. Google los envía gratis.">Thumbtack charges you $20–$150 per lead. Google sends them for free.</h2>
+      <p class="section-intro" data-en="Paid lead platforms make money every time a homeowner contacts you. Google Business Profile sends you exclusive inbound calls at zero cost — most contractors just never bother to set it up properly." data-es="Las plataformas de leads de pago ganan dinero cada vez que un cliente te contacta. Google Business Profile te envía llamadas exclusivas sin costo — la mayoría de los contratistas simplemente nunca se molestan en configurarlo correctamente.">Paid lead platforms make money every time a homeowner contacts you. Google Business Profile sends you exclusive inbound calls at zero cost — most contractors just never bother to set it up properly.</p>
+
+      <div class="comparison-table">
+        <div class="comparison-header">
+          <div class="comp-col-label"></div>
+          <div class="comp-col comp-col-bad" data-en="Thumbtack / Paid Ads" data-es="Thumbtack / Anuncios Pagados">Thumbtack / Paid Ads</div>
+          <div class="comp-col comp-col-good" data-en="Google Business Profile" data-es="Google Business Profile">Google Business Profile</div>
+        </div>
+        <div class="comparison-row">
+          <div class="comp-row-label" data-en="Cost per lead" data-es="Costo por cliente">Cost per lead</div>
+          <div class="comp-col comp-col-bad">$20–$150+</div>
+          <div class="comp-col comp-col-good">$0</div>
+        </div>
+        <div class="comparison-row">
+          <div class="comp-row-label" data-en="Shared with competitors?" data-es="¿Compartido con competidores?">Shared with competitors?</div>
+          <div class="comp-col comp-col-bad" data-en="Yes — up to 4 others" data-es="Sí — hasta 4 más">Yes — up to 4 others</div>
+          <div class="comp-col comp-col-good" data-en="No — they call you directly" data-es="No — te llaman directamente">No — they call you directly</div>
+        </div>
+        <div class="comparison-row">
+          <div class="comp-row-label" data-en="Who reaches out first?" data-es="¿Quién contacta primero?">Who reaches out first?</div>
+          <div class="comp-col comp-col-bad" data-en="You chase them" data-es="Tú los persigues">You chase them</div>
+          <div class="comp-col comp-col-good" data-en="They call you" data-es="Ellos te llaman">They call you</div>
+        </div>
+        <div class="comparison-row">
+          <div class="comp-row-label" data-en="Ongoing cost?" data-es="¿Costo continuo?">Ongoing cost?</div>
+          <div class="comp-col comp-col-bad" data-en="Yes — stops when you stop paying" data-es="Sí — se detiene cuando dejas de pagar">Yes — stops when you stop paying</div>
+          <div class="comp-col comp-col-good" data-en="No — keeps working forever" data-es="No — sigue funcionando para siempre">No — keeps working forever</div>
+        </div>
+        <div class="comparison-row">
+          <div class="comp-row-label" data-en="Builds long-term value?" data-es="¿Genera valor a largo plazo?">Builds long-term value?</div>
+          <div class="comp-col comp-col-bad" data-en="No" data-es="No">No</div>
+          <div class="comp-col comp-col-good" data-en="Yes — reviews + ranking compound" data-es="Sí — reseñas y posición mejoran con el tiempo">Yes — reviews + ranking compound</div>
+        </div>
+      </div>
+
+      <div class="comparison-cta" style="text-align:center;margin-top:40px;">
+        <p style="font-size:1.1rem;font-weight:600;color:#0f172a;margin-bottom:16px;" data-en="We optimize your Google Business Profile so the free leads actually come to you." data-es="Optimizamos tu perfil de Google Business para que los clientes gratuitos lleguen a ti.">We optimize your Google Business Profile so the free leads actually come to you.</p>
+        <a href="#contact" class="btn btn-primary" data-en="Get Your Free Digital Presence Audit" data-es="Auditoría Digital Gratuita">Get Your Free Digital Presence Audit</a>
       </div>
     </div>
   </section>
