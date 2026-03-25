@@ -22,6 +22,28 @@
   <style>
     .lang-toggle { display:flex; align-items:center; gap:4px; background:#f1f5f9; border:none; border-radius:999px; padding:4px 12px; cursor:pointer; font-size:13px; font-weight:600; color:#64748b; }
     .lang-toggle span.active { color:#2563eb; }
+
+    /* Map Pack Demo */
+    .map-pack-demo { max-width: 560px; margin: 48px auto 40px; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+    .map-pack-header { background: #f8fafc; padding: 12px 20px; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; gap: 8px; }
+    .map-pack-result { display: flex; align-items: center; gap: 14px; padding: 14px 20px; border-bottom: 1px solid #f1f5f9; background: #fff; }
+    .map-pack-result:last-child { border-bottom: none; }
+    .map-rank { width: 28px; height: 28px; border-radius: 50%; background: #4285F4; color: #fff; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .map-rank-you { background: #e2e8f0; color: #94a3b8; }
+    .map-info { flex: 1; }
+    .map-biz-name { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
+    .map-stars { font-size: 13px; color: #f59e0b; margin-bottom: 2px; }
+    .map-rating { color: #1a1a1a; font-weight: 600; }
+    .map-review-count { color: #64748b; }
+    .map-meta { font-size: 12px; color: #64748b; }
+    .map-call-btn { background: #e8f0fe; color: #1a73e8; font-size: 13px; font-weight: 600; padding: 6px 14px; border-radius: 999px; white-space: nowrap; flex-shrink: 0; }
+    .map-you { background: #fff8f8; border: 2px dashed #fca5a5 !important; border-bottom: 2px dashed #fca5a5 !important; }
+    .map-invisible-tag { background: #ef4444; color: #fff; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px; white-space: nowrap; flex-shrink: 0; letter-spacing: 0.05em; text-transform: uppercase; }
+    .visibility-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .vis-stat { text-align: center; padding: 24px; background: #0f172a; border-radius: 16px; }
+    .vis-stat-num { font-family: 'Barlow Condensed', sans-serif; font-size: 2.5rem; font-weight: 800; color: #f97316; margin-bottom: 8px; }
+    .vis-stat-label { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.5; }
+    @media (max-width: 600px) { .visibility-stats { grid-template-columns: 1fr; } .map-pack-demo { margin: 32px 0 32px; } }
   </style>
   
   <!-- Facebook Pixel -->
@@ -72,15 +94,15 @@
       <div class="hero-grid">
         <div class="hero-content">
           <span class="badge" data-en="Serving the DMV area" data-es="Sirviendo el área DMV">Serving the DMV area</span>
-          <h1 data-en="Turn missed calls into <span class='text-orange'>booked jobs.</span>" data-es="Convierte llamadas perdidas en <span class='text-orange'>trabajos confirmados.</span>">Turn missed calls into <span class="text-orange">booked jobs.</span></h1>
-          <p class="hero-sub" data-en="We build your website, capture every lead, and follow up automatically — so you can stay on the job while your phone works for you." data-es="Construimos tu sitio web, capturamos cada cliente potencial y hacemos seguimiento automáticamente — para que puedas seguir trabajando mientras tu teléfono trabaja por ti.">We build your website, capture every lead, and follow up automatically — so you can stay on the job while your phone works for you.</p>
+          <h1 data-en="Get found on Google.<br>Get called first.<br><span class='text-orange'>Get more jobs.</span>" data-es="Aparece en Google.<br>Recibe las llamadas primero.<br><span class='text-orange'>Consigue más trabajo.</span>">Get found on Google.<br>Get called first.<br><span class="text-orange">Get more jobs.</span></h1>
+          <p class="hero-sub" data-en="We optimize your Google Business Profile, build your website, and automate your follow-up — so you show up before competitors and never lose a lead." data-es="Optimizamos tu perfil de Google Business, construimos tu sitio web y automatizamos tu seguimiento — para que aparezcas antes que la competencia y nunca pierdas un cliente.">We optimize your Google Business Profile, build your website, and automate your follow-up — so you show up before competitors and never lose a lead.</p>
           <a href="#contact" class="btn btn-primary btn-lg" data-en="Get a Free Digital Presence Audit" data-es="Auditoría Digital Gratuita">Get a Free Digital Presence Audit</a>
           <div class="hero-trust">
-            <span data-en="Website included" data-es="Sitio web incluido">Website included</span>
+            <span data-en="GBP Optimization Included" data-es="Optimización GBP Incluida">GBP Optimization Included</span>
             <span class="sep">•</span>
-            <span data-en="Live in 7 days" data-es="Activo en 7 días">Live in 7 days</span>
+            <span data-en="Website Included" data-es="Sitio Web Incluido">Website Included</span>
             <span class="sep">•</span>
-            <span data-en="No contracts" data-es="Sin contratos">No contracts</span>
+            <span data-en="Live in 7 Days" data-es="Activo en 7 Días">Live in 7 Days</span>
           </div>
         </div>
         <div class="hero-image">
@@ -90,12 +112,83 @@
     </div>
   </section>
 
+  <!-- ========== VISIBILITY PROBLEM ========== -->
+  <section class="section" id="visibility">
+    <div class="container">
+      <span class="section-tag" data-en="The Visibility Problem" data-es="El Problema de Visibilidad">The Visibility Problem</span>
+      <h2 data-en="When homeowners search Google, your competitors show up. You don't." data-es="Cuando los clientes buscan en Google, tus competidores aparecen. Tú no.">When homeowners search Google, your competitors show up. You don't.</h2>
+      <p class="section-intro" data-en="84% of clicks go to the top 3 results on Google Maps. If you're not there, you're invisible — and your competitor is getting the call." data-es="El 84% de los clics van a los primeros 3 resultados de Google Maps. Si no estás ahí, eres invisible — y tu competidor recibe la llamada.">84% of clicks go to the top 3 results on Google Maps. If you're not there, you're invisible — and your competitor is getting the call.</p>
+
+      <div class="map-pack-demo">
+        <div class="map-pack-header">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#4285F4"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <span style="font-size:13px;color:#555;font-weight:600;" data-en='"HVAC contractor near me" — Google Maps results' data-es='"Contratista HVAC cerca de mí" — Resultados de Google Maps'>"HVAC contractor near me" — Google Maps results</span>
+        </div>
+
+        <div class="map-pack-result map-competitor">
+          <div class="map-rank">1</div>
+          <div class="map-info">
+            <div class="map-biz-name">Premier Air Solutions</div>
+            <div class="map-stars">★★★★★ <span class="map-rating">4.9</span> <span class="map-review-count">(127 reviews)</span></div>
+            <div class="map-meta">HVAC Contractor · Columbia, MD · Open now</div>
+          </div>
+          <div class="map-call-btn">Call</div>
+        </div>
+
+        <div class="map-pack-result map-competitor">
+          <div class="map-rank">2</div>
+          <div class="map-info">
+            <div class="map-biz-name">BayState HVAC Services</div>
+            <div class="map-stars">★★★★★ <span class="map-rating">4.8</span> <span class="map-review-count">(84 reviews)</span></div>
+            <div class="map-meta">Air Conditioning Contractor · Annapolis, MD</div>
+          </div>
+          <div class="map-call-btn">Call</div>
+        </div>
+
+        <div class="map-pack-result map-competitor">
+          <div class="map-rank">3</div>
+          <div class="map-info">
+            <div class="map-biz-name">Capitol Heating & Cooling</div>
+            <div class="map-stars">★★★★☆ <span class="map-rating">4.7</span> <span class="map-review-count">(52 reviews)</span></div>
+            <div class="map-meta">Furnace Repair Service · Bowie, MD</div>
+          </div>
+          <div class="map-call-btn">Call</div>
+        </div>
+
+        <div class="map-pack-result map-you">
+          <div class="map-rank map-rank-you">?</div>
+          <div class="map-info">
+            <div class="map-biz-name" data-en="Your Business" data-es="Tu Negocio">Your Business</div>
+            <div class="map-stars">★★☆☆☆ <span class="map-rating" style="color:#ef4444;">2.8</span> <span class="map-review-count">(3 reviews)</span></div>
+            <div class="map-meta" data-en="Incomplete profile · Not showing in top results" data-es="Perfil incompleto · No aparece en los primeros resultados">Incomplete profile · Not showing in top results</div>
+          </div>
+          <div class="map-invisible-tag" data-en="Invisible" data-es="Invisible">Invisible</div>
+        </div>
+      </div>
+
+      <div class="visibility-stats">
+        <div class="vis-stat">
+          <div class="vis-stat-num">84%</div>
+          <div class="vis-stat-label" data-en="of clicks go to the top 3 results" data-es="de los clics van a los primeros 3 resultados">of clicks go to the top 3 results</div>
+        </div>
+        <div class="vis-stat">
+          <div class="vis-stat-num">5×</div>
+          <div class="vis-stat-label" data-en="more calls for businesses with 50+ reviews vs. under 10" data-es="más llamadas para negocios con 50+ reseñas vs. menos de 10">more calls for businesses with 50+ reviews vs. under 10</div>
+        </div>
+        <div class="vis-stat">
+          <div class="vis-stat-num">$0</div>
+          <div class="vis-stat-label" data-en="Google Business Profile costs nothing — most contractors just set it up wrong" data-es="Google Business Profile no cuesta nada — la mayoría de contratistas solo lo configuran mal">Google Business Profile costs nothing — most contractors just set it up wrong</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ========== PROBLEM ========== -->
   <section class="section section-gray" id="problem">
     <div class="container container-narrow">
-      <span class="section-tag" data-en="The Leaky Bucket" data-es="El Balde con Hoyos">The Leaky Bucket</span>
-      <h2 data-en="You aren't losing jobs to competitors—you're losing them to slow follow-up." data-es="No pierdes trabajos ante la competencia — los pierdes por responder tarde.">You aren't losing jobs to competitors—you're losing them to slow follow-up.</h2>
-      <p class="section-intro" data-en="When a homeowner needs a quote, they reach out to 3-5 contractors. The first to respond usually gets the job." data-es="Cuando un dueño de casa necesita un presupuesto, contacta a 3-5 contratistas. El primero en responder generalmente se lleva el trabajo.">When a homeowner needs a quote, they reach out to 3-5 contractors. The first to respond usually gets the job.</p>
+      <span class="section-tag" data-en="And Even When They Call..." data-es="Y Cuando Llaman...">And Even When They Call...</span>
+      <h2 data-en="Getting found is only half the battle. Slow follow-up loses the job." data-es="Aparecer es solo la mitad. Responder tarde pierde el trabajo.">Getting found is only half the battle. Slow follow-up loses the job.</h2>
+      <p class="section-intro" data-en="Once a homeowner finds you and calls, the clock starts. The first contractor to respond usually gets the job. Most contractors lose it before they even know it came in." data-es="Una vez que un cliente te encuentra y llama, el reloj empieza. El primer contratista en responder generalmente se lleva el trabajo. La mayoría lo pierde antes de saber que llegó.">Once a homeowner finds you and calls, the clock starts. The first contractor to respond usually gets the job. Most contractors lose it before they even know it came in.</p>
       
       <div class="problem-grid">
         <div class="problem-card">
@@ -210,22 +303,22 @@
   <!-- ========== HOW IT WORKS ========== -->
   <section class="section" id="how-it-works">
     <div class="container">
-      <span class="section-tag" data-en="The 3-Step Solution" data-es="La Solución en 3 Pasos">The 3-Step Solution</span>
-      <h2 data-en="Simple. No Gimmicks." data-es="Simple. Sin Trucos.">Simple. No Gimmicks.</h2>
+      <span class="section-tag" data-en="The Complete System" data-es="El Sistema Completo">The Complete System</span>
+      <h2 data-en="Get found. Get called. Get booked." data-es="Aparece. Recibe llamadas. Consigue trabajos.">Get found. Get called. Get booked.</h2>
 
       <div class="steps">
         <div class="step">
           <div class="step-num">1</div>
           <div class="step-content">
-            <h3 data-en="We build your website" data-es="Construimos tu sitio web">We build your website</h3>
-            <p data-en="No website? We build one. Bad website? We fix it. Either way, you get a fast, mobile-friendly site that captures quote requests and looks professional — included in your setup." data-es="¿Sin sitio web? Lo construimos. ¿Sitio malo? Lo arreglamos. De cualquier manera, obtienes un sitio rápido y profesional — incluido en tu configuración.">No website? We build one. Bad website? We fix it. Either way, you get a fast, mobile-friendly site that captures quote requests and looks professional — included in your setup.</p>
+            <h3 data-en="Get found on Google" data-es="Aparece en Google">Get found on Google</h3>
+            <p data-en="We optimize your Google Business Profile so you show up in the top 3 when homeowners search for your trade locally. More visibility = more calls." data-es="Optimizamos tu perfil de Google Business para que aparezcas en el top 3 cuando los clientes buscan tu oficio localmente. Más visibilidad = más llamadas.">We optimize your Google Business Profile so you show up in the top 3 when homeowners search for your trade locally. More visibility = more calls.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">2</div>
           <div class="step-content">
             <h3 data-en="Capture every lead" data-es="Captura cada cliente potencial">Capture every lead</h3>
-            <p data-en="When a customer messages you, they get an instant text response so they stop calling other guys. You follow up when you're ready." data-es="Cuando un cliente te escribe, recibe una respuesta inmediata por texto para que no llame a otro contratista. Tú haces seguimiento cuando estés listo.">When a customer messages you, they get an instant text response so they stop calling other guys. You follow up when you're ready.</p>
+            <p data-en="We build your website and set up AI-powered follow-up. Every call gets answered, every form gets an instant response. No lead slips through." data-es="Construimos tu sitio web y configuramos seguimiento automático. Cada llamada se contesta, cada formulario recibe respuesta instantánea. Ningún cliente se pierde.">We build your website and set up AI-powered follow-up. Every call gets answered, every form gets an instant response. No lead slips through.</p>
           </div>
         </div>
         <div class="step">
