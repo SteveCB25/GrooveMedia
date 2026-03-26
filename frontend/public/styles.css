@@ -11,7 +11,7 @@
   --gray-100: #f1f5f9;
   --gray-200: #e2e8f0;
   --gray-300: #cbd5e1;
-  --gray-600: #64748b;
+  --gray-600: #475569;
   --gray-800: #1e293b;
   --black: #0f172a;
   --success: #22c55e;
@@ -57,6 +57,12 @@ img {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 ul { list-style: none; }
