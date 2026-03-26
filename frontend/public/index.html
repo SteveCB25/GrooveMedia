@@ -18,10 +18,11 @@
   <!-- Preload hero image for LCP -->
   <link rel="preload" as="image" href="/hero-contractors.webp">
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts — async to prevent render blocking -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap"></noscript>
   
   <link rel="stylesheet" href="styles.css">
   <style>
@@ -39,8 +40,8 @@
     .map-biz-name { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
     .map-stars { font-size: 13px; color: #f59e0b; margin-bottom: 2px; }
     .map-rating { color: #1a1a1a; font-weight: 600; }
-    .map-review-count { color: #64748b; }
-    .map-meta { font-size: 12px; color: #64748b; }
+    .map-review-count { color: #475569; }
+    .map-meta { font-size: 12px; color: #475569; }
     .map-call-btn { background: #e8f0fe; color: #1a73e8; font-size: 13px; font-weight: 600; padding: 6px 14px; border-radius: 999px; white-space: nowrap; flex-shrink: 0; }
     .map-you { background: #fff8f8; border: 2px dashed #fca5a5 !important; border-bottom: 2px dashed #fca5a5 !important; }
     .map-invisible-tag { background: #ef4444; color: #fff; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px; white-space: nowrap; flex-shrink: 0; letter-spacing: 0.05em; text-transform: uppercase; }
@@ -70,8 +71,8 @@
     }
   </style>
   
-  <!-- Facebook Pixel -->
-  <script>
+  <!-- Facebook Pixel — deferred to reduce TBT -->
+  <script defer>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -499,7 +500,7 @@
             <li>Google Business Profile optimization</li>
             <li>Monthly performance report</li>
           </ul>
-          <a href="https://buy.stripe.com/14A8wR3SI0mI9AQ0eyfw403" target="_blank" class="btn btn-tier" data-en="Get Started" data-es="Comenzar">Get Started</a>
+          <a href="https://buy.stripe.com/14A8wR3SI0mI9AQ0eyfw403" target="_blank" class="btn btn-tier" aria-label="Get Started with Starter plan" data-en="Get Started" data-es="Comenzar">Get Started</a>
         </div>
 
         <div class="pricing-tier tier-popular">
@@ -518,7 +519,7 @@
             <li>Weekly GBP posts</li>
             <li>Competitor ranking reports</li>
           </ul>
-          <a href="https://buy.stripe.com/5kQ6oJ0Gw2uQbIY3qKfw404" target="_blank" class="btn btn-tier btn-tier-primary" data-en="Get Started" data-es="Comenzar">Get Started</a>
+          <a href="https://buy.stripe.com/5kQ6oJ0Gw2uQbIY3qKfw404" target="_blank" class="btn btn-tier btn-tier-primary" aria-label="Get Started with Growth plan" data-en="Get Started" data-es="Comenzar">Get Started</a>
         </div>
 
         <div class="pricing-tier">
@@ -536,7 +537,7 @@
             <li>Priority support</li>
             <li>Full CRM + pipeline management</li>
           </ul>
-          <a href="https://buy.stripe.com/3cI6oJgFu2uQ9AQf9sfw405" target="_blank" class="btn btn-tier" data-en="Get Started" data-es="Comenzar">Get Started</a>
+          <a href="https://buy.stripe.com/3cI6oJgFu2uQ9AQf9sfw405" target="_blank" class="btn btn-tier" aria-label="Get Started with Dominator plan" data-en="Get Started" data-es="Comenzar">Get Started</a>
         </div>
 
       </div>
