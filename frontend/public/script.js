@@ -215,6 +215,47 @@ document.addEventListener('DOMContentLoaded', function() {
     body.appendChild(wrap);
   }
 
+  // ========== GA4 TRACKING ==========
+
+  // Plan selection — fires when any pricing "Get Started" button is clicked
+  document.querySelectorAll('.btn-tier').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var label = this.getAttribute('aria-label') || '';
+      var planName = label.replace('Get Started with ', '').replace(' plan', '') || 'Unknown';
+      var priceMap = { 'Starter': 150, 'Growth': 350, 'Dominator': 500 };
+      if (typeof gtag === 'function') {
+        gtag('event', 'begin_checkout', {
+          plan_name: planName,
+          value: priceMap[planName] || 0,
+          currency: 'USD'
+        });
+      }
+    });
+  });
+
+  // Lead form submission — GHL iframe fires a postMessage on submit
+  window.addEventListener('message', function(e) {
+    var d = e.data;
+    var isFormSubmit = d && (
+      d.type === 'form_submitted' ||
+      d.type === 'hl-form-submission' ||
+      (typeof d === 'string' && d.indexOf('form_submitted') > -1)
+    );
+    if (isFormSubmit) {
+      // GA4
+      if (typeof gtag === 'function') {
+        gtag('event', 'generate_lead', {
+          form_name: 'contact_form',
+          form_id: 'Wjceas4X4gR4OTFe0CtT'
+        });
+      }
+      // Facebook Pixel
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead');
+      }
+    }
+  });
+
   // ========== SCROLL ANIMATIONS ==========
   const observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
