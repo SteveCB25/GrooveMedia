@@ -600,7 +600,7 @@ button {
 }
 
 .price-plus {
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.7);
   font-size: 24px;
   margin: 0 8px;
 }
@@ -742,6 +742,13 @@ button {
   font-weight: 800;
   color: var(--navy);
   text-align: left;
+  cursor: pointer;
+}
+
+.faq-question:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 .faq-question svg {
@@ -1454,7 +1461,7 @@ button {
 
 .author-company {
   font-size: 14px;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.7);
 }
 
 /* =============================================
@@ -1525,10 +1532,19 @@ button {
 /* Reduce section padding on mobile */
 @media (max-width: 767px) {
   .section {
-    padding: 60px 0;
+    padding: 56px 0;
   }
   .hero {
-    padding: 110px 0 60px;
+    padding: 90px 0 52px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 48px 0;
+  }
+  .hero {
+    padding: 80px 0 44px;
   }
 }
 
