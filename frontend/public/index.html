@@ -51,6 +51,17 @@
     .vis-stat-label { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.5; }
     @media (max-width: 600px) { .visibility-stats { grid-template-columns: 1fr; } .map-pack-demo { margin: 32px 0 32px; } }
 
+    /* Missed Call Stats */
+    .mc-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .mc-stat { background: #1e293b; border-radius: 16px; padding: 32px 20px; }
+    .mc-num { font-family: 'Barlow Condensed', sans-serif; font-size: 3rem; font-weight: 800; color: #f97316; margin-bottom: 8px; }
+    .mc-stat-red .mc-num { color: #ef4444; }
+    .mc-label { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.4; margin-bottom: 8px; }
+    .mc-source { font-size: 11px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.05em; }
+    .mc-solution { margin-top: 36px; background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.3); border-radius: 16px; padding: 28px 32px; }
+    .mc-solution p { font-size: 1.1rem; color: white; margin: 0; line-height: 1.6; }
+    @media (max-width: 600px) { .mc-stats { grid-template-columns: 1fr; } }
+
     /* Comparison Table */
     .comparison-table { border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; margin-top: 48px; }
     .comparison-header { display: grid; grid-template-columns: 1fr 1fr 1fr; background: #0f172a; }
@@ -206,6 +217,45 @@
           <div class="vis-stat-num">$0</div>
           <div class="vis-stat-label" data-en="Google Business Profile costs nothing — most contractors just set it up wrong" data-es="Google Business Profile no cuesta nada — la mayoría de contratistas solo lo configuran mal">Google Business Profile costs nothing — most contractors just set it up wrong</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MISSED CALL STATS ========== -->
+  <section class="section section-dark" id="missed-calls">
+    <div class="container container-narrow" style="text-align:center;">
+      <span class="section-tag" data-en="The Real Cost" data-es="El Costo Real">The Real Cost</span>
+      <h2 data-en="Every missed call costs $1,200. The average contractor loses $126,000 a year." data-es="Cada llamada perdida cuesta $1,200. El contratista promedio pierde $126,000 al año.">Every missed call costs $1,200. The average contractor loses $126,000 a year.</h2>
+      <p class="section-intro" style="color:rgba(255,255,255,0.7);" data-en="27% of all calls to home service contractors go unanswered. That's not a tech problem — it's a revenue problem. And it's completely preventable." data-es="El 27% de todas las llamadas a contratistas no son contestadas. Eso no es un problema técnico — es un problema de ingresos. Y es completamente prevenible.">27% of all calls to home service contractors go unanswered. That's not a tech problem — it's a revenue problem. And it's completely preventable.</p>
+
+      <div class="mc-stats">
+        <div class="mc-stat">
+          <div class="mc-num">27%</div>
+          <div class="mc-label" data-en="of contractor calls go unanswered" data-es="de las llamadas no son contestadas">of contractor calls go unanswered</div>
+          <div class="mc-source">Source: Invoca</div>
+        </div>
+        <div class="mc-stat mc-stat-red">
+          <div class="mc-num">$1,200</div>
+          <div class="mc-label" data-en="average revenue lost per missed call" data-es="ingresos perdidos por llamada no contestada">average revenue lost per missed call</div>
+          <div class="mc-source">Source: Dialora</div>
+        </div>
+        <div class="mc-stat mc-stat-red">
+          <div class="mc-num">$126K</div>
+          <div class="mc-label" data-en="lost per year for the average contractor" data-es="perdidos al año por el contratista promedio">lost per year for the average contractor</div>
+          <div class="mc-source">Source: Dialora</div>
+        </div>
+      </div>
+
+      <div class="mc-solution">
+        <p data-en="<strong style='color:#f97316;'>Aria</strong> answers every call — 24/7, in English and Spanish. The moment someone calls, Aria picks up, captures the lead, and texts you instantly. Zero missed calls. Zero lost jobs." data-es="<strong style='color:#f97316;'>Aria</strong> contesta cada llamada — 24/7, en inglés y español. En el momento en que alguien llama, Aria contesta, captura el cliente y te manda un mensaje al instante."><strong style="color:#f97316;">Aria</strong> answers every call — 24/7, in English and Spanish. The moment someone calls, Aria picks up, captures the lead, and texts you instantly. Zero missed calls. Zero lost jobs.</p>
+      </div>
+
+      <!-- Infographic download -->
+      <div style="margin-top:28px;">
+        <a href="/missed-calls-infographic.svg" download="missed-calls-infographic.svg" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.7);font-size:13px;font-weight:600;padding:10px 20px;border-radius:999px;text-decoration:none;">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download infographic
+        </a>
       </div>
     </div>
   </section>
