@@ -10,6 +10,9 @@ from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
 import httpx
+import asyncio
+import stripe
+from agents.onboarder import OnboarderAgent
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -21,6 +24,10 @@ db = client[os.environ['DB_NAME']]
 
 # Formspree configuration
 FORMSPREE_FORM_ID = os.environ.get('FORMSPREE_FORM_ID', '')
+
+# Stripe configuration
+stripe.api_key = os.environ.get('STRIPE_SECRET_KEY', '')
+STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', 'whsec_PXG4c3hja1OlxeLtq6TdB69SASZd3PKI')
 
 # Create the main app
 app = FastAPI(title="Groove Media API", version="1.0.0")
@@ -198,6 +205,37 @@ async def get_leads_count():
     except Exception as e:
         logger.error(f"Error counting leads: {e}")
         raise HTTPException(status_code=500, detail="Error counting leads")
+
+
+# ============ Stripe Webhook — Onboarder ============
+
+@api_router.post("/webhooks/stripe")
+async def stripe_webhook(request: Request):
+    """
+    Receives Stripe events and triggers the OnboarderAgent.
+    Verifies signature to ensure requests are genuinely from Stripe.
+    """
+    payload = await request.body()
+    sig_header = request.headers.get("stripe-signature", "")
+
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, STRIPE_WEBHOOK_SECRET
+        )
+    except ValueError:
+        logger.warning("Stripe webhook: invalid payload")
+        raise HTTPException(status_code=400, detail="Invalid payload")
+    except stripe.error.SignatureVerificationError:
+        logger.warning("Stripe webhook: invalid signature")
+        raise HTTPException(status_code=400, detail="Invalid signature")
+
+    if event["type"] == "checkout.session.completed":
+        session = event["data"]["object"]
+        logger.info(f"Stripe checkout complete: {session.get('id')} — triggering Onboarder")
+        agent = OnboarderAgent()
+        asyncio.create_task(agent.run(session))
+
+    return {"status": "received", "type": event["type"]}
 
 
 # ============ Admin Auth (Simple for MVP) ============
