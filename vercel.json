@@ -1,6 +1,12 @@
 {
   "outputDirectory": "frontend/public",
   "framework": null,
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/onboarding.html", "destination": "/onboarding", "permanent": true },
+    { "source": "/privacy-policy.html", "destination": "/privacy-policy", "permanent": true },
+    { "source": "/terms-of-service.html", "destination": "/terms-of-service", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/onboarding", "destination": "/onboarding.html" },
     { "source": "/privacy-policy", "destination": "/privacy-policy.html" },
