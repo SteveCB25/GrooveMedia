@@ -16,6 +16,13 @@ from agents.onboarder import OnboarderAgent
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
+# Configure logging first so it's available everywhere below
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
 # MongoDB connection (optional — leads storage only; Stripe webhook works without it)
 mongo_url = os.environ.get('MONGO_URL', '')
 if mongo_url:
@@ -38,13 +45,6 @@ app = FastAPI(title="Groove Media API", version="1.0.0")
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
-
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
 
 
 # ============ Models ============
