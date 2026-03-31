@@ -22,6 +22,74 @@ PLAN_MAP = [
     (150, "Starter"),
 ]
 
+# Per-plan feature config
+# aria_style  — complexity hint passed to the welcome email & Telegram checklist
+# includes    — human-readable feature list shown in Telegram and welcome email
+# manual_steps — what Stephen still needs to do manually after automation
+PLAN_CONFIG = {
+    "Starter": {
+        "aria_style": "basic",
+        "includes": [
+            "GBP optimization",
+            "AI receptionist (Aria) — basic greeting",
+            "Local phone number",
+            "A2P registration",
+        ],
+        "website": None,
+        "review_automation": False,
+        "reporting": False,
+        "manual_steps": [
+            "Configure Aria basic greeting",
+            "Submit A2P (use their Business Tax ID)",
+            "Optimize GBP listing",
+        ],
+    },
+    "Growth": {
+        "aria_style": "custom",
+        "includes": [
+            "GBP optimization",
+            "AI receptionist (Aria) — custom script",
+            "Local phone number",
+            "A2P registration",
+            "1-page professional website",
+            "Review automation",
+        ],
+        "website": "1-page",
+        "review_automation": True,
+        "reporting": False,
+        "manual_steps": [
+            "Configure Aria custom script",
+            "Submit A2P (use their Business Tax ID)",
+            "Build 1-page website",
+            "Set up review automation workflow in GHL",
+            "Optimize GBP listing",
+        ],
+    },
+    "Dominator": {
+        "aria_style": "full_persona",
+        "includes": [
+            "GBP optimization",
+            "AI receptionist (Aria) — full persona",
+            "Local phone number",
+            "A2P registration",
+            "Multi-page professional website",
+            "Review automation",
+            "Monthly reporting dashboard",
+        ],
+        "website": "multi-page",
+        "review_automation": True,
+        "reporting": True,
+        "manual_steps": [
+            "Configure Aria full persona",
+            "Submit A2P (use their Business Tax ID)",
+            "Build multi-page website",
+            "Set up review automation workflow in GHL",
+            "Configure monthly reporting dashboard",
+            "Optimize GBP listing",
+        ],
+    },
+}
+
 
 class OnboarderAgent:
 
@@ -53,6 +121,7 @@ class OnboarderAgent:
             "email": customer.get("email", ""),
             "phone": customer.get("phone", ""),
             "plan": plan,
+            "plan_config": PLAN_CONFIG.get(plan, PLAN_CONFIG["Starter"]),
             "amount": amount,
             "stripe_session_id": session.get("id", ""),
         }
@@ -64,8 +133,8 @@ class OnboarderAgent:
 
     def decide(self, client: dict) -> list:
         """
-        Return the ordered list of actions to execute.
-        All tiers get the same actions — extend here for tier-specific logic.
+        Return the ordered list of actions. All tiers share the same
+        automation steps — plan_config drives the content differences.
         """
         actions = [
             "create_ghl_subaccount",
@@ -113,7 +182,7 @@ class OnboarderAgent:
     # ── Step 4: Report ───────────────────────────────────────────────────────
 
     async def report(self, client: dict, results: dict) -> None:
-        """Send Telegram notification with results and onboarding checklist."""
+        """Send Telegram notification with results and tier-specific checklist."""
         await telegram_tools.send_onboarding_alert(client, results)
 
     # ── Main Loop ────────────────────────────────────────────────────────────

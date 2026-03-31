@@ -73,8 +73,22 @@ async def send_onboarding_alert(client: dict, results: dict) -> bool:
     else:
         phone_status = _status(phone_result, "Provisioned")
 
-    # Plan-specific Aria voice suggestion
-    aria_suggestion = f"Hi, you've reached {first}'s service line. How can I help you today?"
+    # Pull plan config for tier-specific checklist
+    config = client.get("plan_config", {})
+    manual_steps = config.get("manual_steps") or [
+        "Configure Aria greeting",
+        "Submit A2P (use their Business Tax ID)",
+    ]
+    steps_text = "\n".join(f"□ {step}" for step in manual_steps)
+
+    # Aria suggestion varies by tier
+    aria_styles = {
+        "basic":        f"Hi, you've reached {first}'s service line. How can I help you today?",
+        "custom":       f"Hi, thanks for calling! This is Aria with {first}'s team — how can I help you today?",
+        "full_persona": f"Hey there! You've reached {first}'s team. I'm Aria, their AI assistant — I can schedule appointments, answer questions, or connect you with the right person. What can I do for you?",
+    }
+    aria_style = config.get("aria_style", "basic")
+    aria_suggestion = aria_styles.get(aria_style, aria_styles["basic"])
 
     message = f"""🎉 <b>NEW PAYING CLIENT!</b>
 
@@ -90,11 +104,11 @@ Opportunity:   {_status(opportunity, 'Created')}
 Welcome email: {_status(welcome_email, 'Sent')}
 GBP request:   {_status(gbp_email, 'Sent')}
 
-<b>📋 YOUR REMAINING MANUAL STEPS:</b>
-□ Configure Aria — suggested intro:
-  <i>"{aria_suggestion}"</i>
-□ Submit A2P (use their Business Tax ID)
-□ Build/update their website
+<b>📋 YOUR {plan.upper()} MANUAL CHECKLIST:</b>
+{steps_text}
+
+<b>💬 Aria starter script:</b>
+<i>"{aria_suggestion}"</i>
 
 ⚡ <b>Open GHL →</b> app.gohighlevel.com/dashboard"""
 

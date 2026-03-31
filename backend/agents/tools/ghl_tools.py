@@ -265,22 +265,49 @@ async def send_welcome_email(contact_id: str, client: dict) -> dict:
     first = client.get("first_name", "there")
     plan = client.get("plan", "Starter")
     email = client.get("email", "")
+    config = client.get("plan_config", {})
+    includes = config.get("includes", [])
+    website = config.get("website")
+    aria_style = config.get("aria_style", "basic")
 
     subject = f"Welcome to The Groove Media, {first}! 🎉 Here's what happens next"
+
+    # Build what's-included list for the email
+    includes_html = "".join(f"<li>{item}</li>" for item in includes)
+
+    # Website paragraph — only for Growth and Dominator
+    website_note = ""
+    if website == "1-page":
+        website_note = "<p><strong>Website:</strong> We'll build your 1-page professional site and send it to you for review within 5 business days.</p>"
+    elif website == "multi-page":
+        website_note = "<p><strong>Website:</strong> We'll build your multi-page site and schedule a review call within 5 business days.</p>"
+
+    # Aria note — varies by tier
+    aria_notes = {
+        "basic": "Your AI receptionist will be set up with a professional greeting to answer missed calls 24/7.",
+        "custom": "Your AI receptionist will be configured with a custom script tailored to your business — we'll share it with you before going live.",
+        "full_persona": "Your AI receptionist will have a full persona built around your brand — name, tone, and a complete call script. We'll walk you through it on your onboarding call.",
+    }
+    aria_note = aria_notes.get(aria_style, aria_notes["basic"])
 
     body = f"""<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#1a1a1a;">
   <h2 style="color:#6c47ff;">Hey {first}, welcome aboard! 🎉</h2>
 
-  <p>You're officially a <strong>{plan} Plan</strong> member of The Groove Media. We're excited to get to work.</p>
+  <p>You're officially on the <strong>{plan} Plan</strong> with The Groove Media. Here's everything that's included and what happens next.</p>
 
-  <h3>Here's what's happening next:</h3>
+  <h3>Your {plan} Plan includes:</h3>
+  <ul style="line-height:1.8;">{includes_html}</ul>
+
+  <h3>What happens next:</h3>
   <ol>
-    <li><strong>Your dedicated account is being set up</strong> — we're configuring your AI receptionist and local phone number.</li>
-    <li><strong>We'll request access to your Google Business Profile</strong> — keep an eye out for a separate email from Google. Accepting that request is important so we can start optimizing your listing.</li>
-    <li><strong>Your onboarding call</strong> — we'll reach out within 1 business day to schedule a quick 20-minute call to get everything dialed in.</li>
+    <li><strong>Your dedicated account is being set up</strong> — your local phone number and AI receptionist are being configured right now.</li>
+    <li><strong>AI Receptionist (Aria):</strong> {aria_note}</li>
+    {website_note and f'<li>{website_note.strip()}</li>' or ''}
+    <li><strong>Google Business Profile:</strong> You'll receive a separate email from us asking for Manager access to your GBP. Accepting that takes 2 minutes and lets us start optimizing your listing immediately.</li>
+    <li><strong>Onboarding call:</strong> We'll reach out within 1 business day to schedule a quick 20-minute call to get everything dialed in.</li>
   </ol>
 
-  <p>In the meantime, if you have any questions just reply to this email — I personally read every one.</p>
+  <p>Questions? Just reply to this email — I personally read every one.</p>
 
   <p style="margin-top:32px;">Talk soon,<br>
   <strong>Stephen Butler</strong><br>
