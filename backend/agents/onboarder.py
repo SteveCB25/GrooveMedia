@@ -69,8 +69,11 @@ class OnboarderAgent:
         """
         actions = [
             "create_ghl_subaccount",
+            "provision_phone_number",
             "create_ghl_contact",
             "create_ghl_opportunity",
+            "send_welcome_email",
+            "send_gbp_access_request",
             "notify_telegram",
         ]
         logger.info(f"Decided actions for {client['plan']} plan: {actions}")
@@ -85,12 +88,25 @@ class OnboarderAgent:
         if "create_ghl_subaccount" in actions:
             results["subaccount"] = await ghl_tools.create_subaccount(client)
 
+        if "provision_phone_number" in actions:
+            sub_location_id = results.get("subaccount", {}).get("id", "")
+            area_code = ghl_tools._extract_area_code(client.get("phone", ""), fallback="410")
+            results["phone"] = await ghl_tools.provision_phone_number(sub_location_id, area_code)
+
         if "create_ghl_contact" in actions:
             results["contact"] = await ghl_tools.create_contact(client)
 
         if "create_ghl_opportunity" in actions:
             contact_id = results.get("contact", {}).get("id", "")
             results["opportunity"] = await ghl_tools.create_opportunity(client, contact_id)
+
+        if "send_welcome_email" in actions:
+            contact_id = results.get("contact", {}).get("id", "")
+            results["welcome_email"] = await ghl_tools.send_welcome_email(contact_id, client)
+
+        if "send_gbp_access_request" in actions:
+            contact_id = results.get("contact", {}).get("id", "")
+            results["gbp_email"] = await ghl_tools.send_gbp_access_request(contact_id, client)
 
         return results
 

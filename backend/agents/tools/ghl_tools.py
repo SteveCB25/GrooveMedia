@@ -4,6 +4,7 @@ Location: GSk4D9ffTVB1SOqwLQcV (The Groove Media)
 """
 
 import os
+import re
 import logging
 import httpx
 
@@ -177,4 +178,221 @@ async def create_subaccount(client: dict) -> dict:
 
     except Exception as e:
         logger.error(f"GHL create_subaccount exception: {e}")
+        return {"success": False, "error": str(e)}
+
+
+def _extract_area_code(phone: str, fallback: str = "410") -> str:
+    """Pull 3-digit area code from a US phone number string."""
+    digits = re.sub(r"\D", "", phone or "")
+    if digits.startswith("1") and len(digits) == 11:
+        return digits[1:4]
+    if len(digits) >= 10:
+        return digits[:3]
+    return fallback  # Baltimore default
+
+
+async def provision_phone_number(sub_location_id: str, area_code: str) -> dict:
+    """
+    Search for an available local number and purchase it for a client sub-account.
+    Uses the Agency API key so it can act on the newly created sub-account.
+    """
+    if not sub_location_id:
+        return {"success": False, "error": "No sub_location_id provided"}
+
+    try:
+        async with httpx.AsyncClient(timeout=15) as http:
+            # Step 1 — search for available numbers in the client's area code
+            search = await http.get(
+                f"{GHL_BASE_URL}/phone-number/search",
+                headers=GHL_AGENCY_HEADERS,
+                params={
+                    "locationId": sub_location_id,
+                    "areaCode": area_code,
+                    "type": "local",
+                    "limit": 5,
+                },
+            )
+            search_data = search.json()
+
+            if search.status_code not in (200, 201):
+                logger.error(f"Phone search failed: {search.status_code} — {search_data}")
+                return {"success": False, "error": f"Search failed: {search_data}"}
+
+            # GHL returns either availableNumbers or numbers depending on API version
+            available = (
+                search_data.get("availableNumbers")
+                or search_data.get("numbers")
+                or []
+            )
+            if not available:
+                logger.warning(f"No numbers available for area code {area_code}")
+                return {"success": False, "error": f"No numbers available for area code {area_code}"}
+
+            # Pick the first result
+            number = (
+                available[0].get("phoneNumber")
+                or available[0].get("number")
+                or available[0].get("friendlyName")
+            )
+
+            # Step 2 — purchase it
+            purchase = await http.post(
+                f"{GHL_BASE_URL}/phone-number/purchase",
+                headers=GHL_AGENCY_HEADERS,
+                json={"locationId": sub_location_id, "phoneNumber": number},
+            )
+            purchase_data = purchase.json()
+
+            if purchase.status_code in (200, 201):
+                logger.info(f"Phone provisioned: {number} for location {sub_location_id}")
+                return {"success": True, "number": number, "data": purchase_data}
+            else:
+                logger.error(f"Phone purchase failed: {purchase.status_code} — {purchase_data}")
+                return {"success": False, "error": str(purchase_data)}
+
+    except Exception as e:
+        logger.error(f"provision_phone_number exception: {e}")
+        return {"success": False, "error": str(e)}
+
+
+async def send_welcome_email(contact_id: str, client: dict) -> dict:
+    """
+    Send a welcome email to a new paying client via GHL conversations.
+    """
+    if not contact_id:
+        return {"success": False, "error": "No contact_id provided"}
+
+    first = client.get("first_name", "there")
+    plan = client.get("plan", "Starter")
+    email = client.get("email", "")
+
+    subject = f"Welcome to The Groove Media, {first}! 🎉 Here's what happens next"
+
+    body = f"""<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#1a1a1a;">
+  <h2 style="color:#6c47ff;">Hey {first}, welcome aboard! 🎉</h2>
+
+  <p>You're officially a <strong>{plan} Plan</strong> member of The Groove Media. We're excited to get to work.</p>
+
+  <h3>Here's what's happening next:</h3>
+  <ol>
+    <li><strong>Your dedicated account is being set up</strong> — we're configuring your AI receptionist and local phone number.</li>
+    <li><strong>We'll request access to your Google Business Profile</strong> — keep an eye out for a separate email from Google. Accepting that request is important so we can start optimizing your listing.</li>
+    <li><strong>Your onboarding call</strong> — we'll reach out within 1 business day to schedule a quick 20-minute call to get everything dialed in.</li>
+  </ol>
+
+  <p>In the meantime, if you have any questions just reply to this email — I personally read every one.</p>
+
+  <p style="margin-top:32px;">Talk soon,<br>
+  <strong>Stephen Butler</strong><br>
+  The Groove Media<br>
+  <a href="https://thegroovemedia.com" style="color:#6c47ff;">thegroovemedia.com</a></p>
+</div>"""
+
+    payload = {
+        "type": "Email",
+        "contactId": contact_id,
+        "locationId": GHL_LOCATION_ID,
+        "emailFrom": "stephen@thegroovemedia.com",
+        "emailFromName": "Stephen Butler | The Groove Media",
+        "emailTo": email,
+        "subject": subject,
+        "body": body,
+        "html": body,
+    }
+
+    try:
+        async with httpx.AsyncClient(timeout=10) as http:
+            response = await http.post(
+                f"{GHL_BASE_URL}/conversations/messages",
+                headers=GHL_HEADERS,
+                json=payload,
+            )
+            data = response.json()
+
+            if response.status_code in (200, 201):
+                logger.info(f"Welcome email sent to {email}")
+                return {"success": True, "id": data.get("id", "")}
+            else:
+                logger.error(f"Welcome email failed: {response.status_code} — {data}")
+                return {"success": False, "error": str(data)}
+
+    except Exception as e:
+        logger.error(f"send_welcome_email exception: {e}")
+        return {"success": False, "error": str(e)}
+
+
+async def send_gbp_access_request(contact_id: str, client: dict) -> dict:
+    """
+    Send an email asking the client to grant Google Business Profile Manager access.
+    """
+    if not contact_id:
+        return {"success": False, "error": "No contact_id provided"}
+
+    first = client.get("first_name", "there")
+    email = client.get("email", "")
+    gbp_url = client.get("gbp_url", "")
+
+    subject = f"Action needed: Grant us access to your Google Business Profile"
+
+    gbp_note = (
+        f'<p>We found your listing here: <a href="{gbp_url}" style="color:#6c47ff;">{gbp_url}</a></p>'
+        if gbp_url else ""
+    )
+
+    body = f"""<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#1a1a1a;">
+  <h2 style="color:#6c47ff;">One quick step from you, {first}</h2>
+
+  <p>To start optimizing your Google Business Profile, we need Manager access to your listing. This takes about 2 minutes.</p>
+
+  {gbp_note}
+
+  <h3>Here's how to add us:</h3>
+  <ol>
+    <li>Go to <a href="https://business.google.com" style="color:#6c47ff;">business.google.com</a> and sign in</li>
+    <li>Click your business listing</li>
+    <li>Go to <strong>Business Profile Settings → Managers</strong></li>
+    <li>Click <strong>Add</strong> and enter: <strong>stephen@thegroovemedia.com</strong></li>
+    <li>Set the role to <strong>Manager</strong> and click <strong>Invite</strong></li>
+  </ol>
+
+  <p>That's it! Once you've done that, we'll get started on your profile right away.</p>
+
+  <p>Any trouble? Just reply here and I'll walk you through it.</p>
+
+  <p style="margin-top:32px;">Thanks,<br>
+  <strong>Stephen Butler</strong><br>
+  The Groove Media<br>
+  <a href="https://thegroovemedia.com" style="color:#6c47ff;">thegroovemedia.com</a></p>
+</div>"""
+
+    payload = {
+        "type": "Email",
+        "contactId": contact_id,
+        "locationId": GHL_LOCATION_ID,
+        "emailFrom": "stephen@thegroovemedia.com",
+        "emailFromName": "Stephen Butler | The Groove Media",
+        "emailTo": email,
+        "subject": subject,
+        "body": body,
+        "html": body,
+    }
+
+    try:
+        async with httpx.AsyncClient(timeout=10) as http:
+            response = await http.post(
+                f"{GHL_BASE_URL}/conversations/messages",
+                headers=GHL_HEADERS,
+                json=payload,
+            )
+            data = response.json()
+
+            if response.status_code in (200, 201):
+                logger.info(f"GBP access request sent to {email}")
+                return {"success": True, "id": data.get("id", "")}
+            else:
+                logger.error(f"GBP request email failed: {response.status_code} — {data}")
+                return {"success": False, "error": str(data)}
+
+    except Exception as e:
+        logger.error(f"send_gbp_access_request exception: {e}")
         return {"success": False, "error": str(e)}

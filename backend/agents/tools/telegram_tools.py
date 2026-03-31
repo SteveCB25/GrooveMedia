@@ -52,41 +52,51 @@ async def send_onboarding_alert(client: dict, results: dict) -> bool:
     contact = results.get("contact", {})
     opportunity = results.get("opportunity", {})
     subaccount = results.get("subaccount", {})
+    phone_result = results.get("phone", {})
+    welcome_email = results.get("welcome_email", {})
+    gbp_email = results.get("gbp_email", {})
 
-    contact_status = "✅ Created" if contact.get("success") else f"❌ Failed: {contact.get('error', '')}"
-    opp_status = "✅ Created" if opportunity.get("success") else f"❌ Failed: {opportunity.get('error', '')}"
+    def _status(result: dict, success_label: str = "Done") -> str:
+        if not result:
+            return "⏭ Skipped"
+        return f"✅ {success_label}" if result.get("success") else f"❌ {result.get('error', 'Failed')[:60]}"
 
     if subaccount.get("success"):
-        sub_status = f"✅ Created (ID: <code>{subaccount.get('id', '')}</code>)"
+        sub_status = f"✅ Created — <code>{subaccount.get('id', '')}</code>"
     elif subaccount.get("error") == "GHL_COMPANY_ID not configured":
-        sub_status = "⚠️ Skipped (set GHL_COMPANY_ID in env)"
+        sub_status = "⚠️ Skipped (GHL_COMPANY_ID missing)"
     else:
-        sub_status = f"❌ Failed: {subaccount.get('error', 'not attempted')}"
+        sub_status = f"❌ {subaccount.get('error', 'Failed')[:60]}"
 
-    # Plan-specific Aria voice name suggestions
-    aria_suggestion = f"Hi, you've reached {first}'s {plan.lower()} service line. How can I help you today?"
+    if phone_result.get("success"):
+        phone_status = f"✅ {phone_result.get('number', 'Provisioned')}"
+    else:
+        phone_status = _status(phone_result, "Provisioned")
+
+    # Plan-specific Aria voice suggestion
+    aria_suggestion = f"Hi, you've reached {first}'s service line. How can I help you today?"
 
     message = f"""🎉 <b>NEW PAYING CLIENT!</b>
 
 👤 <b>{first} {last}</b> — {plan} Plan (${amount}/mo)
 📧 {email}
-📞 {phone or '— (collect during onboarding)'}
+📞 {phone or '— (not provided at checkout)'}
 
-<b>Automation Results:</b>
-GHL Sub-account: {sub_status}
-GHL Contact: {contact_status}
-GHL Opportunity: {opp_status}
+<b>⚙️ Automation Results:</b>
+Sub-account:   {sub_status}
+Phone number:  {phone_status}
+GHL Contact:   {_status(contact, 'Created')}
+Opportunity:   {_status(opportunity, 'Created')}
+Welcome email: {_status(welcome_email, 'Sent')}
+GBP request:   {_status(gbp_email, 'Sent')}
 
-<b>📋 YOUR 7-DAY ONBOARDING CHECKLIST:</b>
-□ Configure Aria in new sub-account — suggested intro:
+<b>📋 YOUR REMAINING MANUAL STEPS:</b>
+□ Configure Aria — suggested intro:
   <i>"{aria_suggestion}"</i>
-□ Provision phone number in GHL
-□ Submit A2P registration (use their Tax ID)
+□ Submit A2P (use their Business Tax ID)
 □ Build/update their website
-□ Request GBP Manager access
-□ Send welcome email to {email}
 
-⚡ <b>Start here →</b> app.gohighlevel.com/dashboard"""
+⚡ <b>Open GHL →</b> app.gohighlevel.com/dashboard"""
 
     return await send_message(message)
 
