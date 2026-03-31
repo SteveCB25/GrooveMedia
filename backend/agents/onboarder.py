@@ -68,6 +68,7 @@ class OnboarderAgent:
         All tiers get the same actions — extend here for tier-specific logic.
         """
         actions = [
+            "create_ghl_subaccount",
             "create_ghl_contact",
             "create_ghl_opportunity",
             "notify_telegram",
@@ -80,6 +81,9 @@ class OnboarderAgent:
     async def execute(self, actions: list, client: dict) -> dict:
         """Run each tool in sequence, collecting results."""
         results = {}
+
+        if "create_ghl_subaccount" in actions:
+            results["subaccount"] = await ghl_tools.create_subaccount(client)
 
         if "create_ghl_contact" in actions:
             results["contact"] = await ghl_tools.create_contact(client)

@@ -10,17 +10,21 @@ from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
 import httpx
-import asyncio
 import stripe
 from agents.onboarder import OnboarderAgent
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+# MongoDB connection (optional — leads storage only; Stripe webhook works without it)
+mongo_url = os.environ.get('MONGO_URL', '')
+if mongo_url:
+    client = AsyncIOMotorClient(mongo_url)
+    db = client[os.environ.get('DB_NAME', 'groovemedia')]
+else:
+    client = None
+    db = None
+    logger.warning("MONGO_URL not set — MongoDB disabled; leads will not be stored")
 
 # Formspree configuration
 FORMSPREE_FORM_ID = os.environ.get('FORMSPREE_FORM_ID', '')
@@ -135,9 +139,12 @@ async def create_lead(lead_data: LeadCreate, request: Request):
         doc = lead.model_dump()
         doc['created_at'] = doc['created_at'].isoformat()
         
-        # Store in MongoDB
-        await db.leads.insert_one(doc)
-        logger.info(f"Lead stored in MongoDB: {lead.id}")
+        # Store in MongoDB (if configured)
+        if db is not None:
+            await db.leads.insert_one(doc)
+            logger.info(f"Lead stored in MongoDB: {lead.id}")
+        else:
+            logger.info(f"MongoDB not configured — lead {lead.id} not stored")
         
         # Submit to Formspree (async, don't block response)
         formspree_data = {
@@ -170,6 +177,8 @@ async def get_leads(skip: int = 0, limit: int = 100, search: Optional[str] = Non
                 ]
             }
         
+        if db is None:
+            return []
         leads = await db.leads.find(query, {"_id": 0}).sort("created_at", -1).skip(skip).limit(limit).to_list(limit)
         
         # Convert ISO string timestamps back to datetime
@@ -186,6 +195,8 @@ async def get_leads(skip: int = 0, limit: int = 100, search: Optional[str] = Non
 async def delete_lead(lead_id: str):
     """Delete a lead by ID"""
     try:
+        if db is None:
+            raise HTTPException(status_code=503, detail="Database not configured")
         result = await db.leads.delete_one({"id": lead_id})
         if result.deleted_count == 0:
             raise HTTPException(status_code=404, detail="Lead not found")
@@ -200,6 +211,8 @@ async def delete_lead(lead_id: str):
 async def get_leads_count():
     """Get total leads count"""
     try:
+        if db is None:
+            return {"count": 0}
         count = await db.leads.count_documents({})
         return {"count": count}
     except Exception as e:
@@ -233,7 +246,8 @@ async def stripe_webhook(request: Request):
         session = event["data"]["object"]
         logger.info(f"Stripe checkout complete: {session.get('id')} — triggering Onboarder")
         agent = OnboarderAgent()
-        asyncio.create_task(agent.run(session))
+        # await directly — serverless functions don't persist background tasks
+        await agent.run(session)
 
     return {"status": "received", "type": event["type"]}
 
@@ -267,4 +281,5 @@ app.add_middleware(
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
-    client.close()
+    if client is not None:
+        client.close()

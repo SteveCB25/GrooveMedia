@@ -14,9 +14,19 @@ GHL_LOCATION_ID = os.environ.get("GHL_LOCATION_ID", "GSk4D9ffTVB1SOqwLQcV")
 GHL_PIPELINE_ID = os.environ.get("GHL_PIPELINE_ID", "Ozi1ok3AstGt3U6V0xnY")
 GHL_STAGE_ID = os.environ.get("GHL_STAGE_ID", "2d34b0e7-3237-4c31-86bf-c1fbc61f63ca")
 
+# Agency-level credentials for sub-account creation
+GHL_AGENCY_API_KEY = os.environ.get("GHL_AGENCY_API_KEY", "pit-76f2f13c-ccc7-4e1c-800a-70ef9cf296d2")
+GHL_COMPANY_ID = os.environ.get("GHL_COMPANY_ID", "9SPNF61EQwXgoL26U9GM")
+GHL_TEMPLATE_SNAPSHOT_ID = os.environ.get("GHL_TEMPLATE_SNAPSHOT_ID", "")
+
 GHL_BASE_URL = "https://services.leadconnectorhq.com"
 GHL_HEADERS = {
     "Authorization": f"Bearer {GHL_API_KEY}",
+    "Version": "2021-07-28",
+    "Content-Type": "application/json",
+}
+GHL_AGENCY_HEADERS = {
+    "Authorization": f"Bearer {GHL_AGENCY_API_KEY}",
     "Version": "2021-07-28",
     "Content-Type": "application/json",
 }
@@ -103,4 +113,68 @@ async def create_opportunity(client: dict, contact_id: str) -> dict:
 
     except Exception as e:
         logger.error(f"GHL create_opportunity exception: {e}")
+        return {"success": False, "error": str(e)}
+
+
+async def create_subaccount(client: dict) -> dict:
+    """
+    Create a new GHL sub-account (location) for an onboarded client.
+    Uses the Agency API key with locations.write scope.
+
+    Requires GHL_COMPANY_ID to be set in environment variables.
+    Optionally clones from GHL_TEMPLATE_SNAPSHOT_ID if set.
+    """
+    if not GHL_COMPANY_ID:
+        logger.warning("GHL_COMPANY_ID not set — skipping sub-account creation")
+        return {"success": False, "error": "GHL_COMPANY_ID not configured"}
+
+    business = (
+        client.get("business_name")
+        or f"{client.get('first_name', '')} {client.get('last_name', '')}".strip()
+        or "New Client"
+    )
+
+    payload = {
+        "name": business,
+        "companyId": GHL_COMPANY_ID,
+        "email": client.get("email", ""),
+        "phone": client.get("phone", ""),
+        "address": client.get("address", ""),
+        "city": client.get("city", ""),
+        "state": client.get("state", ""),
+        "country": "US",
+        "postalCode": client.get("postal_code", ""),
+        "website": client.get("website", ""),
+        "timezone": "America/New_York",
+        "prospectInfo": {
+            "firstName": client.get("first_name", ""),
+            "lastName": client.get("last_name", ""),
+            "email": client.get("email", ""),
+        },
+    }
+
+    # Clone from the _TEMPLATE snapshot if one is configured
+    if GHL_TEMPLATE_SNAPSHOT_ID:
+        payload["snapshotId"] = GHL_TEMPLATE_SNAPSHOT_ID
+
+    try:
+        async with httpx.AsyncClient(timeout=15) as http:
+            response = await http.post(
+                f"{GHL_BASE_URL}/locations/",
+                headers=GHL_AGENCY_HEADERS,
+                json=payload,
+            )
+            data = response.json()
+
+            if response.status_code in (200, 201):
+                location = data.get("location", {})
+                loc_id = location.get("id", "")
+                logger.info(f"GHL sub-account created: {loc_id} for '{business}'")
+                return {"success": True, "id": loc_id, "name": business, "data": location}
+            else:
+                logger.error(f"GHL sub-account creation failed: {response.status_code} — {data}")
+                return {"success": False, "error": str(data)}
+
+    except Exception as e:
+        logger.error(f"GHL create_subaccount exception: {e}")
         return {"success": False, "error": str(e)}

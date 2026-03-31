@@ -51,9 +51,17 @@ async def send_onboarding_alert(client: dict, results: dict) -> bool:
 
     contact = results.get("contact", {})
     opportunity = results.get("opportunity", {})
+    subaccount = results.get("subaccount", {})
 
     contact_status = "✅ Created" if contact.get("success") else f"❌ Failed: {contact.get('error', '')}"
     opp_status = "✅ Created" if opportunity.get("success") else f"❌ Failed: {opportunity.get('error', '')}"
+
+    if subaccount.get("success"):
+        sub_status = f"✅ Created (ID: <code>{subaccount.get('id', '')}</code>)"
+    elif subaccount.get("error") == "GHL_COMPANY_ID not configured":
+        sub_status = "⚠️ Skipped (set GHL_COMPANY_ID in env)"
+    else:
+        sub_status = f"❌ Failed: {subaccount.get('error', 'not attempted')}"
 
     # Plan-specific Aria voice name suggestions
     aria_suggestion = f"Hi, you've reached {first}'s {plan.lower()} service line. How can I help you today?"
@@ -65,12 +73,12 @@ async def send_onboarding_alert(client: dict, results: dict) -> bool:
 📞 {phone or '— (collect during onboarding)'}
 
 <b>Automation Results:</b>
+GHL Sub-account: {sub_status}
 GHL Contact: {contact_status}
 GHL Opportunity: {opp_status}
 
 <b>📋 YOUR 7-DAY ONBOARDING CHECKLIST:</b>
-□ Create GHL sub-account for {first}
-□ Configure Aria — suggested intro:
+□ Configure Aria in new sub-account — suggested intro:
   <i>"{aria_suggestion}"</i>
 □ Provision phone number in GHL
 □ Submit A2P registration (use their Tax ID)
