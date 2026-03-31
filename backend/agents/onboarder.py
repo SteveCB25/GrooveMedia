@@ -22,70 +22,76 @@ PLAN_MAP = [
     (150, "Starter"),
 ]
 
-# Per-plan feature config
-# aria_style  — complexity hint passed to the welcome email & Telegram checklist
-# includes    — human-readable feature list shown in Telegram and welcome email
-# manual_steps — what Stephen still needs to do manually after automation
+# Per-plan feature config — mirrors the pricing page exactly
+# snapshot_env_key — the environment variable holding the GHL snapshot ID for this tier
+# aria_style       — drives Aria script complexity in email + Telegram
+# includes         — feature list shown in welcome email
+# manual_steps     — what Stephen still needs to do after automation runs
 PLAN_CONFIG = {
     "Starter": {
+        "snapshot_env_key": "GHL_SNAPSHOT_STARTER",
         "aria_style": "basic",
         "includes": [
-            "GBP optimization",
-            "AI receptionist (Aria) — basic greeting",
-            "Local phone number",
-            "A2P registration",
+            "Professional website (built for you)",
+            "Missed call text-back (< 90 sec)",
+            "Quote request form",
+            "2-way SMS inbox",
+            "Google Business Profile optimization",
+            "Monthly performance report",
         ],
-        "website": None,
-        "review_automation": False,
-        "reporting": False,
         "manual_steps": [
-            "Configure Aria basic greeting",
+            "Build & launch their website",
+            "Configure Aria missed call text-back",
             "Submit A2P (use their Business Tax ID)",
             "Optimize GBP listing",
+            "Set up monthly performance report",
         ],
     },
     "Growth": {
+        "snapshot_env_key": "GHL_SNAPSHOT_GROWTH",
         "aria_style": "custom",
         "includes": [
-            "GBP optimization",
-            "AI receptionist (Aria) — custom script",
-            "Local phone number",
-            "A2P registration",
-            "1-page professional website",
-            "Review automation",
+            "Everything in Starter",
+            "Automated review requests",
+            "5-touch lead nurture sequence",
+            "Online booking widget",
+            "Real-time lead dashboard",
+            "Weekly GBP posts",
+            "Competitor ranking reports",
         ],
-        "website": "1-page",
-        "review_automation": True,
-        "reporting": False,
         "manual_steps": [
-            "Configure Aria custom script",
+            "Build & launch their website",
+            "Configure Aria + custom script",
             "Submit A2P (use their Business Tax ID)",
-            "Build 1-page website",
-            "Set up review automation workflow in GHL",
-            "Optimize GBP listing",
+            "Activate review request workflow in GHL",
+            "Set up 5-touch lead nurture sequence",
+            "Configure online booking widget",
+            "Optimize GBP listing + schedule weekly posts",
         ],
     },
     "Dominator": {
+        "snapshot_env_key": "GHL_SNAPSHOT_DOMINATOR",
         "aria_style": "full_persona",
         "includes": [
-            "GBP optimization",
-            "AI receptionist (Aria) — full persona",
-            "Local phone number",
-            "A2P registration",
-            "Multi-page professional website",
-            "Review automation",
-            "Monthly reporting dashboard",
+            "Everything in Growth",
+            "AI Voice Agent (24/7 call answering)",
+            "Google & Meta Ads management",
+            "Dedicated account manager",
+            "Weekly strategy calls",
+            "Priority support",
+            "Full CRM + pipeline management",
         ],
-        "website": "multi-page",
-        "review_automation": True,
-        "reporting": True,
         "manual_steps": [
-            "Configure Aria full persona",
+            "Build & launch their website",
+            "Configure AI Voice Agent full persona",
             "Submit A2P (use their Business Tax ID)",
-            "Build multi-page website",
-            "Set up review automation workflow in GHL",
-            "Configure monthly reporting dashboard",
-            "Optimize GBP listing",
+            "Activate review request workflow in GHL",
+            "Set up 5-touch lead nurture sequence",
+            "Configure online booking widget",
+            "Set up Google & Meta Ads campaigns",
+            "Configure full CRM pipeline",
+            "Schedule weekly strategy call",
+            "Optimize GBP listing + schedule weekly posts",
         ],
     },
 }

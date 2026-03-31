@@ -18,7 +18,11 @@ GHL_STAGE_ID = os.environ.get("GHL_STAGE_ID", "2d34b0e7-3237-4c31-86bf-c1fbc61f6
 # Agency-level credentials for sub-account creation
 GHL_AGENCY_API_KEY = os.environ.get("GHL_AGENCY_API_KEY", "pit-76f2f13c-ccc7-4e1c-800a-70ef9cf296d2")
 GHL_COMPANY_ID = os.environ.get("GHL_COMPANY_ID", "9SPNF61EQwXgoL26U9GM")
-GHL_TEMPLATE_SNAPSHOT_ID = os.environ.get("GHL_TEMPLATE_SNAPSHOT_ID", "")
+
+# Per-tier GHL snapshot IDs — set these in Vercel env vars once snapshots are created in GHL
+GHL_SNAPSHOT_STARTER   = os.environ.get("GHL_SNAPSHOT_STARTER", "")
+GHL_SNAPSHOT_GROWTH    = os.environ.get("GHL_SNAPSHOT_GROWTH", "")
+GHL_SNAPSHOT_DOMINATOR = os.environ.get("GHL_SNAPSHOT_DOMINATOR", "")
 
 GHL_BASE_URL = "https://services.leadconnectorhq.com"
 GHL_HEADERS = {
@@ -154,9 +158,13 @@ async def create_subaccount(client: dict) -> dict:
         },
     }
 
-    # Clone from the _TEMPLATE snapshot if one is configured
-    if GHL_TEMPLATE_SNAPSHOT_ID:
-        payload["snapshotId"] = GHL_TEMPLATE_SNAPSHOT_ID
+    # Load the tier-specific snapshot so the sub-account is pre-configured
+    # for exactly what was purchased (workflows, pipelines, automations, funnels)
+    snapshot_env_key = (client.get("plan_config") or {}).get("snapshot_env_key", "")
+    snapshot_id = os.environ.get(snapshot_env_key, "") if snapshot_env_key else ""
+    if snapshot_id:
+        payload["snapshotId"] = snapshot_id
+        logger.info(f"Using snapshot {snapshot_id} for {client.get('plan', 'Unknown')} plan")
 
     try:
         async with httpx.AsyncClient(timeout=15) as http:
@@ -267,7 +275,6 @@ async def send_welcome_email(contact_id: str, client: dict) -> dict:
     email = client.get("email", "")
     config = client.get("plan_config", {})
     includes = config.get("includes", [])
-    website = config.get("website")
     aria_style = config.get("aria_style", "basic")
 
     subject = f"Welcome to The Groove Media, {first}! 🎉 Here's what happens next"
@@ -275,18 +282,11 @@ async def send_welcome_email(contact_id: str, client: dict) -> dict:
     # Build what's-included list for the email
     includes_html = "".join(f"<li>{item}</li>" for item in includes)
 
-    # Website paragraph — only for Growth and Dominator
-    website_note = ""
-    if website == "1-page":
-        website_note = "<p><strong>Website:</strong> We'll build your 1-page professional site and send it to you for review within 5 business days.</p>"
-    elif website == "multi-page":
-        website_note = "<p><strong>Website:</strong> We'll build your multi-page site and schedule a review call within 5 business days.</p>"
-
     # Aria note — varies by tier
     aria_notes = {
-        "basic": "Your AI receptionist will be set up with a professional greeting to answer missed calls 24/7.",
+        "basic": "Your AI receptionist will be set up to answer missed calls automatically and send a text-back within 90 seconds.",
         "custom": "Your AI receptionist will be configured with a custom script tailored to your business — we'll share it with you before going live.",
-        "full_persona": "Your AI receptionist will have a full persona built around your brand — name, tone, and a complete call script. We'll walk you through it on your onboarding call.",
+        "full_persona": "Your AI Voice Agent will have a full persona built around your brand — name, tone, and a complete call handling script. We'll walk you through it on your onboarding call.",
     }
     aria_note = aria_notes.get(aria_style, aria_notes["basic"])
 
@@ -300,10 +300,10 @@ async def send_welcome_email(contact_id: str, client: dict) -> dict:
 
   <h3>What happens next:</h3>
   <ol>
-    <li><strong>Your dedicated account is being set up</strong> — your local phone number and AI receptionist are being configured right now.</li>
-    <li><strong>AI Receptionist (Aria):</strong> {aria_note}</li>
-    {website_note and f'<li>{website_note.strip()}</li>' or ''}
-    <li><strong>Google Business Profile:</strong> You'll receive a separate email from us asking for Manager access to your GBP. Accepting that takes 2 minutes and lets us start optimizing your listing immediately.</li>
+    <li><strong>Your dedicated account is being set up</strong> — your local phone number and automations are being configured right now.</li>
+    <li><strong>AI Receptionist:</strong> {aria_note}</li>
+    <li><strong>Website:</strong> Your professional website is included in your setup. We'll be in touch within 2 business days to gather your content and get it built.</li>
+    <li><strong>Google Business Profile:</strong> You'll receive a separate email from us asking for Manager access to your GBP. Accepting takes 2 minutes and lets us start optimizing your listing right away.</li>
     <li><strong>Onboarding call:</strong> We'll reach out within 1 business day to schedule a quick 20-minute call to get everything dialed in.</li>
   </ol>
 
