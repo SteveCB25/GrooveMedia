@@ -16,10 +16,11 @@
   ],
 
   "rewrites": [
-    { "source": "/api/:path*",       "destination": "/api/index.py"       },
-    { "source": "/onboarding",       "destination": "/onboarding.html"    },
-    { "source": "/privacy-policy",   "destination": "/privacy-policy.html"},
-    { "source": "/terms-of-service", "destination": "/terms-of-service.html"},
-    { "source": "/(.*)",             "destination": "/index.html"         }
+    { "source": "/api/:path*",            "destination": "/api/index.py"                  },
+    { "source": "/onboarding",            "destination": "/onboarding.html"               },
+    { "source": "/privacy-policy",        "destination": "/privacy-policy.html"           },
+    { "source": "/terms-of-service",      "destination": "/terms-of-service.html"         },
+    { "source": "/maryland-contractors",  "destination": "/maryland-contractors.html"     },
+    { "source": "/(.*)",                  "destination": "/index.html"                    }
   ]
 }
