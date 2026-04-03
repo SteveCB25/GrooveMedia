@@ -16,11 +16,15 @@
   ],
 
   "rewrites": [
-    { "source": "/api/:path*",            "destination": "/api/index.py"                  },
-    { "source": "/onboarding",            "destination": "/onboarding.html"               },
-    { "source": "/privacy-policy",        "destination": "/privacy-policy.html"           },
-    { "source": "/terms-of-service",      "destination": "/terms-of-service.html"         },
-    { "source": "/maryland-contractors",  "destination": "/maryland-contractors.html"     },
-    { "source": "/(.*)",                  "destination": "/index.html"                    }
+    { "source": "/api/:path*",                                          "destination": "/api/index.py"                                          },
+    { "source": "/onboarding",                                          "destination": "/onboarding.html"                                       },
+    { "source": "/privacy-policy",                                      "destination": "/privacy-policy.html"                                   },
+    { "source": "/terms-of-service",                                    "destination": "/terms-of-service.html"                                 },
+    { "source": "/maryland-contractors",                                "destination": "/maryland-contractors.html"                             },
+    { "source": "/blog",                                                "destination": "/blog/index.html"                                       },
+    { "source": "/blog/missed-call-text-back-for-contractors",          "destination": "/blog/missed-call-text-back-for-contractors.html"       },
+    { "source": "/blog/how-to-rank-higher-google-maps-contractor",      "destination": "/blog/how-to-rank-higher-google-maps-contractor.html"   },
+    { "source": "/blog/why-contractors-need-a-professional-website",    "destination": "/blog/why-contractors-need-a-professional-website.html" },
+    { "source": "/(.*)",                                                "destination": "/index.html"                                            }
   ]
 }
